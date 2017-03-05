@@ -1,4 +1,4 @@
-package me.odinaris.searchcar
+package me.odinaris.searchcar.main
 
 import android.app.Activity
 import android.content.Intent
@@ -11,6 +11,7 @@ import android.widget.ImageView
 
 import butterknife.ButterKnife
 import butterknife.bindView
+import me.odinaris.searchcar.R
 
 /**
  * Created by Odinaris on 2017/3/3.
