@@ -1,4 +1,4 @@
-package me.odinaris.searchcar.rent_car
+package me.odinaris.searchcar.user
 
 
 import android.os.Bundle
@@ -13,10 +13,10 @@ import me.odinaris.searchcar.R
  * Created by Odinaris on 2017/3/5.
  */
 
-class RentCarFragment : Fragment() {
+class UserFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val view : View = inflater!!.inflate(R.layout.frag_car_rent,container,false)
+        val view : View = inflater!!.inflate(R.layout.frag_user,container,false)
         ButterKnife.bind(this,view)
         return view
     }

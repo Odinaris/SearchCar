@@ -16,7 +16,7 @@ import me.odinaris.searchcar.R
 class SaleCarFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val view : View = inflater!!.inflate(R.layout.frag_homepage,container,false)
+        val view : View = inflater!!.inflate(R.layout.frag_car_sale,container,false)
         ButterKnife.bind(this,view)
         return view
     }

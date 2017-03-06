@@ -12,14 +12,22 @@ import butterknife.bindView
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
 import com.ashokvarma.bottomnavigation.BottomNavigationItem
 import me.odinaris.searchcar.R
+import me.odinaris.searchcar.buy_car.BuyCarFragment
 import me.odinaris.searchcar.homepage.HomepageFragment
+import me.odinaris.searchcar.rent_car.RentCarFragment
+import me.odinaris.searchcar.sale_car_car.SaleCarFragment
+import me.odinaris.searchcar.user.UserFragment
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
     val main_navigator : BottomNavigationBar by bindView(R.id.main_navigator)
-    var fragmentsList = ArrayList<Fragment>()
-    var homepage = HomepageFragment()
+    val fragmentsList = ArrayList<Fragment>()
+    val homepage = HomepageFragment()
+    val buyCar = BuyCarFragment()
+    val saleCar = SaleCarFragment()
+    val rentCar = RentCarFragment()
+    val user = UserFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,14 +43,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initView() {
-        fragmentsList.add(0, homepage)
-        fragmentsList.add(1, homepage)
+        fragmentsList.add(0, buyCar)
+        fragmentsList.add(1, saleCar)
         fragmentsList.add(2, homepage)
+        fragmentsList.add(3, rentCar)
+        fragmentsList.add(4, user)
         main_navigator
+                .addItem(BottomNavigationItem(R.drawable.ic_car_buy,"买车"))
+                .addItem(BottomNavigationItem(R.drawable.ic_car_sale,"卖车"))
                 .addItem(BottomNavigationItem(R.drawable.ic_homepage,"主页"))
-                .addItem(BottomNavigationItem(R.drawable.ic_homepage,"主页"))
-                .addItem(BottomNavigationItem(R.drawable.ic_homepage,"主页"))
-                .setFirstSelectedPosition(1).initialise()
+                .addItem(BottomNavigationItem(R.drawable.ic_car_rent,"租车"))
+                .addItem(BottomNavigationItem(R.drawable.ic_user,"我的"))
+                .setFirstSelectedPosition(2).initialise()
         main_navigator
                 .setTabSelectedListener(object : BottomNavigationBar.OnTabSelectedListener{
                     override fun onTabUnselected(position: Int) {}
@@ -55,17 +67,17 @@ class MainActivity : AppCompatActivity() {
                             0 -> {
                                 hideAllFragments(transaction)
                                 if (!fragmentsList[position].isAdded) {
-                                    transaction.add(R.id.main_container, homepage).show(homepage)
+                                    transaction.add(R.id.main_container, buyCar).show(buyCar)
                                 } else {
-                                    transaction.show(homepage)
+                                    transaction.show(buyCar)
                                 }
                             }
                             1 -> {
                                 hideAllFragments(transaction)
                                 if (!fragmentsList[position].isAdded) {
-                                    transaction.add(R.id.main_container, homepage).show(homepage)
+                                    transaction.add(R.id.main_container, saleCar).show(saleCar)
                                 } else {
-                                    transaction.show(homepage)
+                                    transaction.show(saleCar)
                                 }
                             }
                             2 -> {
@@ -74,6 +86,22 @@ class MainActivity : AppCompatActivity() {
                                     transaction.add(R.id.main_container, homepage).show(homepage)
                                 } else {
                                     transaction.show(homepage)
+                                }
+                            }
+                            3 -> {
+                                hideAllFragments(transaction)
+                                if (!fragmentsList[position].isAdded) {
+                                    transaction.add(R.id.main_container, rentCar).show(rentCar)
+                                } else {
+                                    transaction.show(rentCar)
+                                }
+                            }
+                            4 -> {
+                                hideAllFragments(transaction)
+                                if (!fragmentsList[position].isAdded) {
+                                    transaction.add(R.id.main_container, user).show(user)
+                                } else {
+                                    transaction.show(user)
                                 }
                             }
                         }
