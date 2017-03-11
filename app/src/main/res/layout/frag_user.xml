@@ -3,35 +3,79 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#FFE14D"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:padding="8dp">
 
-        <!--options button-->
-        <ImageView
-            android:id="@+id/options"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:backgroundTint="#fff"
-            android:src="@drawable/ic_homepage"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <!--setting layout-->
+            <LinearLayout
+                android:id="@+id/ll_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingEnd="16dp">
+                <!--options button-->
+                <Button
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:backgroundTint="#000000"
+                    android:background="@drawable/ic_setting"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="设置"
+                    android:textColor="#000"/>
+
+            </LinearLayout>
+
+            <!--notification layout-->
+            <LinearLayout
+                android:id="@+id/ll_notification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingEnd="16dp">
+                <!--notification button-->
+                <Button
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:backgroundTint="#000000"
+                    android:background="@drawable/ic_message"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="通知"
+                    android:textColor="#000"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
 
         <!--login container-->
         <LinearLayout
             android:id="@+id/login_container"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:orientation="vertical"
-            android:paddingTop="20dp">
+            android:padding="10dp">
 
             <ImageView
                 android:id="@+id/user_logo"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_user"/>
+                android:src="@drawable/ic_user_placeholder"/>
 
             <TextView
                 android:id="@+id/user_name"
@@ -43,13 +87,6 @@
                 android:textSize="18dp"/>
         </LinearLayout>
 
-        <!--notification button-->
-        <ImageView
-            android:id="@+id/notification"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:backgroundTint="#fff"
-            android:src="@drawable/ic_homepage"/>
 
     </LinearLayout>
 
