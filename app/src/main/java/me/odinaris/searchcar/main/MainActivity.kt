@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
 import android.view.Window
 import android.view.WindowManager
-import butterknife.ButterKnife
 import butterknife.bindView
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
 import com.ashokvarma.bottomnavigation.BottomNavigationItem
@@ -37,7 +36,6 @@ class MainActivity : AppCompatActivity() {
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)//可不加
         }
         setContentView(R.layout.act_main)
-        ButterKnife.bind(this)
         setDefaultFragment()
         initView()
     }

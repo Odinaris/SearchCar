@@ -9,7 +9,6 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 
-import butterknife.ButterKnife
 import butterknife.bindView
 import me.odinaris.searchcar.R
 
@@ -25,13 +24,12 @@ class StartActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.act_start)
-        ButterKnife.bind(this)
         initImage()
     }
 
     private fun initImage() {
         bmp = readBitMap(R.drawable.wallpaper_sj)
-        iv_start!!.setImageBitmap(bmp)
+        iv_start.setImageBitmap(bmp)
         //设置缩放动画
         val animation = AnimationUtils.loadAnimation(this@StartActivity, R.anim.anim_start)
         animation.setAnimationListener(object : Animation.AnimationListener {
@@ -43,7 +41,7 @@ class StartActivity : Activity() {
             }
             override fun onAnimationRepeat(animation: Animation) { }
         })
-        iv_start!!.startAnimation(animation)
+        iv_start.startAnimation(animation)
     }
 
     private fun startActivity() {
