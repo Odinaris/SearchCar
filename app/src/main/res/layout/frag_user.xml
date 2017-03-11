@@ -1,28 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
-
+              android:layout_height="match_parent"
+              android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:background="#FFE14D"
-        android:paddingTop="20dp">
+        android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="match_parent"
+        <!--options button-->
+        <ImageView
+            android:id="@+id/options"
+            android:layout_width="50dp"
             android:layout_height="50dp"
-            android:text="用户"
-            android:gravity="center"
-            android:textSize="18dp"
-            android:textColor="#000"/>
+            android:backgroundTint="#fff"
+            android:src="@drawable/ic_homepage"/>
+
+        <!--login container-->
+        <LinearLayout
+            android:id="@+id/login_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingTop="20dp">
+
+            <ImageView
+                android:id="@+id/user_logo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_user"/>
+
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="立即登陆"
+                android:textColor="#000"
+                android:textSize="18dp"/>
+        </LinearLayout>
+
+        <!--notification button-->
+        <ImageView
+            android:id="@+id/notification"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:backgroundTint="#fff"
+            android:src="@drawable/ic_homepage"/>
+
     </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="主页用来展示用户售车信息和租车信息以及其他"/>
+        android:text="个人中心"/>
 
 </LinearLayout>
