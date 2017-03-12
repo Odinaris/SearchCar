@@ -10,6 +10,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".main.MainActivity">
         </activity>
+        <activity android:name=".login.LoginActivity">
+        </activity>
         <activity
             android:name=".main.StartActivity"
             android:theme="@android:style/Theme.Material.NoActionBar.Fullscreen">
