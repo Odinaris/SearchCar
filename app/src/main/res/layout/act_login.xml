@@ -50,5 +50,5 @@
         android:text="@string/log_in"
         android:textSize="18dp"/>
 
-
+    <requestFocus/>
 </LinearLayout>
