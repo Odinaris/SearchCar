@@ -112,9 +112,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun setDefaultFragment() {
         val fm = supportFragmentManager
-        val mFragmentTranscation = fm.beginTransaction()
-        mFragmentTranscation.add(R.id.main_container, homepage)
-        mFragmentTranscation.commit()
+        val mFragmentTransaction = fm.beginTransaction()
+        mFragmentTransaction.add(R.id.main_container, homepage)
+        mFragmentTransaction.commit()
     }
 
     fun hideAllFragments(transaction: FragmentTransaction) {

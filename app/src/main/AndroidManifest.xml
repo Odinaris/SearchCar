@@ -11,8 +11,7 @@
         <activity android:name=".main.MainActivity">
         </activity>
         <activity
-            android:name=".login.LoginActivity"
-            android:theme="@android:style/Theme.Material.NoActionBar.Fullscreen">
+            android:name=".login.LoginActivity">
         </activity>
         <activity
             android:name=".main.StartActivity"
