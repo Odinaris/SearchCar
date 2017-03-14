@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:bnbInactiveColor="#ffffff"
-        app:bnbMode="mode_default"
+        app:bnbMode="mode_fixed"
         app:bnbBackgroundStyle="background_style_ripple"
         app:bnbActiveColor="#414141"
         app:bnbBackgroundColor="#FFE14D"/>

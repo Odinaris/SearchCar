@@ -3,6 +3,7 @@ package me.odinaris.searchcar.login
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
+import cn.bmob.v3.BmobUser
 import me.odinaris.searchcar.R
 import me.odinaris.searchcar.model.userInfo
 import kotlinx.android.synthetic.main.act_login.*
@@ -22,8 +23,6 @@ class LoginActivity : AppCompatActivity() {
             actionBar.setDisplayHomeAsUpEnabled(true)
         }
         setContentView(R.layout.act_login)
-
-        et_password.hint = "d "
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

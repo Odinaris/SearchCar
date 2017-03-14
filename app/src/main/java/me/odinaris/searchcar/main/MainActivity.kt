@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
 import android.view.Window
 import android.view.WindowManager
-import butterknife.bindView
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
 import com.ashokvarma.bottomnavigation.BottomNavigationItem
 import me.odinaris.searchcar.R
@@ -17,10 +16,10 @@ import me.odinaris.searchcar.rent_car.RentCarFragment
 import me.odinaris.searchcar.sale_car_car.SaleCarFragment
 import me.odinaris.searchcar.user.UserFragment
 import java.util.*
+import kotlinx.android.synthetic.main.act_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    val main_navigator : BottomNavigationBar by bindView(R.id.main_navigator)
     val fragmentsList = ArrayList<Fragment>()
     val homepage = HomepageFragment()
     val buyCar = BuyCarFragment()
@@ -56,65 +55,59 @@ class MainActivity : AppCompatActivity() {
         main_navigator
                 .setTabSelectedListener(object : BottomNavigationBar.OnTabSelectedListener{
                     override fun onTabUnselected(position: Int) {}
-
                     override fun onTabSelected(position: Int) {
-                        val fm = supportFragmentManager
-                        val transaction = fm.beginTransaction()
+                        val SFM = supportFragmentManager!!
+                        val transaction = SFM.beginTransaction()!!
+//                        transaction.setCustomAnimations(
+//                                R.animator.slide_in_left,R.animator.slide_in_right)
+//                        transaction.setCustomAnimations(
+//                                R.anim.slide_in_left,R.anim.slide_out_right)
                         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                         when(position){
                             0 -> {
                                 hideAllFragments(transaction)
                                 if (!fragmentsList[position].isAdded) {
                                     transaction.add(R.id.main_container, buyCar).show(buyCar)
-                                } else {
-                                    transaction.show(buyCar)
-                                }
+                                } else { transaction.show(buyCar) }
                             }
                             1 -> {
                                 hideAllFragments(transaction)
                                 if (!fragmentsList[position].isAdded) {
                                     transaction.add(R.id.main_container, saleCar).show(saleCar)
-                                } else {
-                                    transaction.show(saleCar)
-                                }
+                                } else { transaction.show(saleCar) }
                             }
                             2 -> {
                                 hideAllFragments(transaction)
                                 if (!fragmentsList[position].isAdded) {
                                     transaction.add(R.id.main_container, homepage).show(homepage)
-                                } else {
-                                    transaction.show(homepage)
-                                }
+                                } else { transaction.show(homepage) }
                             }
                             3 -> {
                                 hideAllFragments(transaction)
                                 if (!fragmentsList[position].isAdded) {
                                     transaction.add(R.id.main_container, rentCar).show(rentCar)
-                                } else {
-                                    transaction.show(rentCar)
-                                }
+                                } else { transaction.show(rentCar) }
                             }
                             4 -> {
                                 hideAllFragments(transaction)
                                 if (!fragmentsList[position].isAdded) {
                                     transaction.add(R.id.main_container, user).show(user)
-                                } else {
-                                    transaction.show(user)
-                                }
+                                } else { transaction.show(user) }
                             }
                         }
                         transaction.commit()
                     }
-
                     override fun onTabReselected(position: Int) {}
                 })
     }
 
     private fun setDefaultFragment() {
-        val fm = supportFragmentManager
-        val mFragmentTransaction = fm.beginTransaction()
-        mFragmentTransaction.add(R.id.main_container, homepage)
-        mFragmentTransaction.commit()
+        if(!homepage.isAdded){
+            val SFM = supportFragmentManager!!
+            val transaction = SFM.beginTransaction()!!
+            transaction.add(R.id.main_container, homepage)
+            transaction.commit()
+        }
     }
 
     fun hideAllFragments(transaction: FragmentTransaction) {
