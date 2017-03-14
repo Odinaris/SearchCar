@@ -7,10 +7,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
-import butterknife.bindView
+import kotlinx.android.synthetic.main.frag_user.*
 import me.odinaris.searchcar.R
 import me.odinaris.searchcar.login.LoginActivity
 
@@ -19,9 +16,6 @@ import me.odinaris.searchcar.login.LoginActivity
  */
 
 class UserFragment : Fragment() {
-
-    private val user_name : TextView by bindView(R.id.tv_user_name)
-    private val login_box : LinearLayout by bindView(R.id.ll_login)
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view : View = inflater!!.inflate(R.layout.frag_user,container,false)
@@ -35,7 +29,7 @@ class UserFragment : Fragment() {
     }
 
     private fun initListener() {
-        login_box.setOnClickListener { checkLogin() }
+        ll_login.setOnClickListener { checkLogin() }
     }
 
     //检查用户登陆状态并执行相应操作

@@ -4,4 +4,7 @@
     <string name="log_up">注册</string>
     <string name="tips_phone">输入11位手机号码</string>
     <string name="tips_password">输入6&#8211;16位密码</string>
+    <string name="setting">设置</string>
+    <string name="notification">通知</string>
+    <string name="tips_login">立即登陆</string>
 </resources>

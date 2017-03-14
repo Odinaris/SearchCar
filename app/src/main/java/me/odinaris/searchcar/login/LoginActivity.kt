@@ -1,22 +1,18 @@
 package me.odinaris.searchcar.login
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
-import android.widget.Button
-import android.widget.EditText
-import butterknife.bindView
 import me.odinaris.searchcar.R
+import me.odinaris.searchcar.model.userInfo
+import kotlinx.android.synthetic.main.act_login.*
 
 /**
  * Created by Odinaris on 2017/3/13.
  */
 
 class LoginActivity : AppCompatActivity() {
-    private val phone: EditText by bindView(R.id.et_phone)
-    private val password: EditText by bindView(R.id.et_password)
-    private val submit: Button by bindView(R.id.btn_submit)
+    private val user: userInfo? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +23,7 @@ class LoginActivity : AppCompatActivity() {
         }
         setContentView(R.layout.act_login)
 
+        et_password.hint = "d "
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -40,3 +37,4 @@ class LoginActivity : AppCompatActivity() {
     }
 
 }
+

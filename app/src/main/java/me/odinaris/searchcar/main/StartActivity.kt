@@ -7,10 +7,9 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.ImageView
-
-import butterknife.bindView
+import cn.bmob.v3.Bmob
 import me.odinaris.searchcar.R
+import kotlinx.android.synthetic.main.act_start.*
 
 /**
  * Created by Odinaris on 2017/3/3.
@@ -18,12 +17,12 @@ import me.odinaris.searchcar.R
 
 class StartActivity : Activity() {
 
-    val iv_start: ImageView by bindView(R.id.iv_start)
     private var bmp: Bitmap? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.act_start)
+        Bmob.initialize(this, "1e664726dca54fa3ba5667e97e25e9ed")
         initImage()
     }
 

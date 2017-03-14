@@ -45,10 +45,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/colorPrimary"
-        android:layout_margin="10dp"
-        android:padding="20dp"
+        android:layout_margin="15dp"
+        android:padding="15dp"
         android:text="@string/log_in"
-        android:textSize="18dp"/>
+        android:textSize="18sp"/>
 
+    <!--必须加入requestFocus才可使焦点不被EditText自动获取-->
     <requestFocus/>
 </LinearLayout>
