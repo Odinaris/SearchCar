@@ -16,6 +16,9 @@ import kotlinx.android.synthetic.main.act_login.*
 
 class LoginActivity : AppCompatActivity() {
     private val user: userInfo? = null
+    private var chars: CharSequence? = null
+    private var start: Int = 0
+    private var end: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,18 +29,28 @@ class LoginActivity : AppCompatActivity() {
             actionBar.setDisplayHomeAsUpEnabled(true)
         }
         setContentView(R.layout.act_login)
-        btn_submit.isClickable = false
-        et_password.addTextChangedListener(object: TextWatcher{
-            override fun beforeTextChanged(var1: CharSequence, var2: Int, var3: Int, var4: Int) {
+        //btn_submit.isClickable = false
 
+        et_phone.addTextChangedListener(object: TextWatcher{
+            override fun beforeTextChanged(s: CharSequence, var2: Int, var3: Int, var4: Int) {
+                chars = s
+                btn_submit.text = chars
             }
 
             override fun onTextChanged(var1: CharSequence, var2: Int, var3: Int, var4: Int) {
-                btn_submit.isClickable = true
             }
 
-            override fun afterTextChanged(var1: Editable) {
-
+            override fun afterTextChanged(s: Editable) {
+                start = et_phone.selectionStart
+                end = et_phone.selectionEnd
+                if(chars!!.length>11){
+                    til_phone.isErrorEnabled = true
+                    til_phone.error = "手机号码必须为11位!"
+                    s.delete(start-1,end)
+                }else if(chars!!.length<=11){
+//                    til_phone.isErrorEnabled = false
+//                    til_phone.error = ""
+                }
             }
         })
     }
