@@ -3,8 +3,12 @@
     <string name="log_in">登 陆</string>
     <string name="log_up">注册</string>
     <string name="tips_phone">输入11位手机号码</string>
-    <string name="tips_password">输入6&#8211;16位密码</string>
+    <string name="tips_password">输入6&#8211;12位密码</string>
     <string name="setting">设置</string>
     <string name="notification">通知</string>
     <string name="tips_login">立即登陆</string>
+    <string name="tips_loading">加载中，请稍后...</string>
+    <string name="tips_name">输入姓名</string>
+    <string name="register">注册</string>
+    <string name="tips_register">没有账户？注册</string>
 </resources>

@@ -7,36 +7,36 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFE14D"
+        android:paddingTop="20dp"
         android:orientation="vertical"
         android:gravity="center"
-        android:paddingTop="20dp">
+        android:background="#FFE14D">
 
         <!--append layout-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="end"
+            android:padding="8dp"
             android:orientation="horizontal"
-            android:padding="8dp">
+            android:gravity="end">
             <!--setting layout-->
             <LinearLayout
                 android:id="@+id/ll_setting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingEnd="16dp">
+                android:paddingEnd="16dp"
+                android:orientation="horizontal">
                 <!--options button-->
                 <Button
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:backgroundTint="#000000"
-                    android:background="@drawable/ic_setting"/>
+                    android:background="@drawable/ic_setting"
+                    android:backgroundTint="#000000"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/setting"
-                    android:textColor="#000"/>
+                    android:textColor="#000"
+                    android:text="@string/setting"/>
 
             </LinearLayout>
             <!--notification layout-->
@@ -44,20 +44,20 @@
                 android:id="@+id/ll_notification"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:paddingStart="0dp"
-                android:paddingEnd="16dp">
+                android:paddingEnd="16dp"
+                android:orientation="horizontal">
                 <!--notification button-->
                 <Button
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:backgroundTint="#000000"
-                    android:background="@drawable/ic_message"/>
+                    android:background="@drawable/ic_message"
+                    android:backgroundTint="#000000"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/notification"
-                    android:textColor="#000"/>
+                    android:textColor="#000"
+                    android:text="@string/notification"/>
 
             </LinearLayout>
         </LinearLayout>
@@ -67,9 +67,9 @@
             android:id="@+id/ll_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="10dp"
             android:orientation="vertical"
-            android:gravity="center"
-            android:padding="10dp">
+            android:gravity="center">
 
             <ImageView
                 android:id="@+id/iv_user_logo"
@@ -83,9 +83,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:gravity="center"
-                android:text="@string/tips_login"
+                android:textSize="18dp"
                 android:textColor="#000"
-                android:textSize="18dp"/>
+                android:text="@string/tips_login"/>
         </LinearLayout>
 
 
