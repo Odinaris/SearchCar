@@ -10,7 +10,7 @@
         android:paddingTop="20dp"
         android:orientation="vertical"
         android:gravity="center"
-        android:background="#FFE14D">
+        android:background="@color/colorPrimary">
 
         <!--append layout-->
         <LinearLayout
@@ -31,11 +31,11 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:background="@drawable/ic_setting"
-                    android:backgroundTint="#000000"/>
+                    android:backgroundTint="@color/grey_300"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
+                    android:textColor="@color/grey_300"
                     android:text="@string/setting"/>
 
             </LinearLayout>
@@ -52,11 +52,11 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:background="@drawable/ic_message"
-                    android:backgroundTint="#000000"/>
+                    android:backgroundTint="@color/grey_300"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
+                    android:textColor="@color/grey_300"
                     android:text="@string/notification"/>
 
             </LinearLayout>
@@ -84,7 +84,7 @@
                 android:layout_height="50dp"
                 android:gravity="center"
                 android:textSize="18dp"
-                android:textColor="#000"
+                android:textColor="@color/grey_300"
                 android:text="@string/tips_login"/>
         </LinearLayout>
 

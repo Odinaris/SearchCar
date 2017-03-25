@@ -7,8 +7,11 @@
     <string name="setting">设置</string>
     <string name="notification">通知</string>
     <string name="tips_login">立即登陆</string>
-    <string name="tips_loading">加载中，请稍后...</string>
+    <string name="tips_loading">加载中，请稍后&#8230;</string>
     <string name="tips_name">输入姓名</string>
     <string name="register">注册</string>
     <string name="tips_register">没有账户？注册</string>
+    <string name="tips_searchCar">搜索您想要的车</string>
+    <string name="quickSearch">快速找车</string>
+    <string name="moreSelect">更多选择</string>
 </resources>

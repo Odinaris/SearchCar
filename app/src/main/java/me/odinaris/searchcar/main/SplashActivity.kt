@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.act_start.*
  * Created by Odinaris on 2017/3/3.
  */
 
-class StartActivity : Activity() {
+class SplashActivity : Activity() {
 
     private var bmp: Bitmap? = null
 
@@ -30,7 +30,7 @@ class StartActivity : Activity() {
         bmp = readBitMap(R.drawable.wallpaper_sj)
         iv_start.setImageBitmap(bmp)
         //设置缩放动画
-        val animation = AnimationUtils.loadAnimation(this@StartActivity, R.anim.anim_start)
+        val animation = AnimationUtils.loadAnimation(this@SplashActivity, R.anim.anim_start)
         animation.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationStart(animation: Animation) {
                 //可以在这里先进行某些操作
@@ -44,7 +44,7 @@ class StartActivity : Activity() {
     }
 
     private fun startActivity() {
-        startActivity(Intent(this@StartActivity, MainActivity::class.java))
+        startActivity(Intent(this@SplashActivity, MainActivity::class.java))
         finish()
         overridePendingTransition(R.anim.scale_in, R.anim.scale_out)
     }

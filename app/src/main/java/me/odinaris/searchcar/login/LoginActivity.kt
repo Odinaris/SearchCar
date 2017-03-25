@@ -14,7 +14,7 @@ import android.widget.Toast
 import cn.bmob.v3.BmobUser
 import cn.bmob.v3.listener.SaveListener
 import me.odinaris.searchcar.R
-import me.odinaris.searchcar.model.userInfo
+import me.odinaris.searchcar.bean.userInfo
 import kotlinx.android.synthetic.main.act_login.*
 import me.odinaris.searchcar.utils.ProgressDialog
 import me.odinaris.searchcar.main.MainActivity
@@ -171,7 +171,10 @@ class LoginActivity : AppCompatActivity() {
             val im = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             im.hideSoftInputFromWindow(view.windowToken,0)
         }
-
+    }
+    override fun onStop() {
+        super.onStop()
+        finish()
     }
 }
 

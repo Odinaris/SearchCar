@@ -12,7 +12,7 @@ import android.widget.Toast
 import cn.bmob.v3.BmobUser
 import cn.bmob.v3.listener.SaveListener
 import me.odinaris.searchcar.R
-import me.odinaris.searchcar.model.userInfo
+import me.odinaris.searchcar.bean.userInfo
 import kotlinx.android.synthetic.main.act_register.*
 import me.odinaris.searchcar.main.MainActivity
 import android.content.Intent
@@ -48,18 +48,8 @@ class RegisterActivity : AppCompatActivity() {
                                         .setCallback(object : Snackbar.Callback() {
                                     override fun onDismissed(sb: Snackbar?, event: Int) {
                                         super.onDismissed(sb, event)
-                                        val localUser = BmobUser.getCurrentUser()
-                                        AlertDialog.Builder(this@RegisterActivity)
-                                                .setMessage(localUser.username)
-                                                .setPositiveButton("知道了", null)
-                                                .show()
-//                                        user.login(object: SaveListener<userInfo>(){
-//                                            override fun done(s: userInfo?, e: BmobException) {
-//
-//                                            }
-//                                        })
-                                        //此处将新注册用户信息填写至SharePreference
-                                        //startActivity(Intent(this@RegisterActivity, MainActivity::class.java))
+                                        //signUp方法在注册的同时已实现了保存新用户信息到本地功能
+                                        startActivity(Intent(this@RegisterActivity, MainActivity::class.java))
                                     } }).show() }
                             else {
                                 AlertDialog.Builder(this@RegisterActivity).setTitle("登录失败")
