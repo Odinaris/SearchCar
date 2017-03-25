@@ -70,7 +70,8 @@ dependencies {
     //如果你想应用能够兼容Android6.0，请添加此依赖(org.apache.http.legacy.jar)
     compile 'cn.bmob.android:http-legacy:1.0'
 
-
+    //第三方RecyclerView，集成上拉加载下拉刷新功能
+    compile 'me.leefeng:lfrecyclerview:1.0.1'
 }
 repositories {
     maven {
