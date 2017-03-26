@@ -24,6 +24,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.zaaach.citypicker.CityPickerActivity"
+            android:theme="@style/CityPicker.NoActionBar"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
     </application>
     <!--允许联网 -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -37,4 +42,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!--允许读取手机状态 用于创建BmobInstallation-->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!--高德定位开发者Key-->
+    <meta-data android:name="com.amap.api.v2.apikey"
+               android:value="ce7be6289f5802cb2a631308f4ed9529"/>
 </manifest>

@@ -1,18 +1,19 @@
 package me.odinaris.searchcar.homepage
 
 
+import android.app.Activity.RESULT_OK
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.widget.AlertDialogLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebView
 import cn.bmob.v3.BmobQuery
 import cn.bmob.v3.exception.BmobException
 import cn.bmob.v3.listener.FindListener
+import com.zaaach.citypicker.CityPickerActivity
 import me.odinaris.searchcar.R
 import kotlinx.android.synthetic.main.frag_homepage.*
 import me.odinaris.searchcar.adapter.CarAdapter
@@ -28,11 +29,18 @@ import me.odinaris.searchcar.sale_car_car.SaleCarFragment
  */
 
 class HomepageFragment : Fragment() {
-    private var carList: ArrayList<CarIntro>? = ArrayList<CarIntro>()
+    private val REQUEST_CODE_PICK_CITY = 0
+    private var carList: ArrayList<CarIntro>? = ArrayList()
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view : View = inflater!!.inflate(R.layout.frag_homepage,container,false)
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+        //将用户当前选择城市存储在SharePreference中用于其他模块查询
+        //当选择城市之后更新当前车源列表
     }
 
     override fun onViewCreated(view: View,savedInstanceState: Bundle?){
@@ -85,6 +93,20 @@ class HomepageFragment : Fragment() {
                     .commit()
         })
 
+        ll_location.setOnClickListener({
+            startActivityForResult(Intent(context,CityPickerActivity::class.java),REQUEST_CODE_PICK_CITY)
+        })
+
+    }
+
+
+
+    //重写onActivityResult方法
+    override fun onActivityResult(requestCode : Int, resultCode : Int, data : Intent) {
+        if (requestCode == REQUEST_CODE_PICK_CITY && resultCode == RESULT_OK){
+            val city = data.getStringExtra(CityPickerActivity.KEY_PICKED_CITY)
+            tv_location.text = city
+        }
     }
 
     fun initView(){

@@ -1,6 +1,7 @@
 package me.odinaris.searchcar.adapter
 
 import android.content.Context
+import android.graphics.Paint
 import android.net.Uri
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
@@ -12,10 +13,6 @@ import me.odinaris.searchcar.R
 import android.view.LayoutInflater
 import com.bumptech.glide.Glide
 
-
-/**
- * Created by Odinaris on 2017/3/26.
- */
 class CarAdapter(val carList: ArrayList<CarIntro>, val context: Context) :
         RecyclerView.Adapter<CarAdapter.ViewHolder>() {
 
@@ -26,6 +23,7 @@ class CarAdapter(val carList: ArrayList<CarIntro>, val context: Context) :
         holder.mileAge.text = carInfo.mileAge
         holder.price.text = carInfo.price
         holder.newPrice.text = carInfo.newPrice
+        holder.newPrice.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
         Glide.with(context).load(Uri.parse(carInfo.imageUrl)).into(holder.img)
         holder.itemView.setOnClickListener({
             //跳转汽车详情页
