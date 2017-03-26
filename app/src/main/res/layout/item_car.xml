@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/iv_car_cover"
+        android:layout_width="120dp"
+        android:layout_height="100sp"
+        android:src="@drawable/ic_car_buy"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginStart="8dp">
+
+        <TextView
+            android:id="@+id/tv_car_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="雪佛兰赛欧2010款 三厢 1.2L 手动温馨版"
+            android:textSize="16sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginBottom="8dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tv_car_registerTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2010年"
+                android:layout_marginBottom="8dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="/"
+                android:layout_marginBottom="8dp"/>
+            <TextView
+                android:id="@+id/tv_car_mileAge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5.35万公里"
+                android:layout_marginBottom="8dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_car_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2.10万"
+                android:textColor="#e12104"
+                android:textSize="16sp"
+                android:layout_marginEnd="8sp"/>
+            <TextView
+                android:id="@+id/tv_car_tips_newPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="新车价"
+                android:textSize="12sp"/>
+            <TextView
+                android:id="@+id/tv_car_newPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="6.17万"
+                android:textSize="12sp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

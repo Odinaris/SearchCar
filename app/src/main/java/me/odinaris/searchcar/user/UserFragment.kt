@@ -13,10 +13,6 @@ import kotlinx.android.synthetic.main.frag_user.*
 import me.odinaris.searchcar.R
 import me.odinaris.searchcar.login.LoginActivity
 
-/**
- * Created by Odinaris on 2017/3/5.
- */
-
 class UserFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
