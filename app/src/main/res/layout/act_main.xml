@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:clipToPadding="true"
-    android:fitsSystemWindows="false">
+    android:fitsSystemWindows="true">
 
     <LinearLayout
         android:id="@+id/main_container"

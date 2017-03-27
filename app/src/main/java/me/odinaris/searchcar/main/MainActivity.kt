@@ -115,4 +115,6 @@ class MainActivity : AppCompatActivity() {
             transaction.hide(fragmentsList[i])
         }
     }
+
+
 }

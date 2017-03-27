@@ -3,16 +3,22 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#ededed"
+    android:fitsSystemWindows="true"
+    android:clipToPadding="true">
+    <!--paddingTop预留20dp是为了不被状态栏遮挡activity内容，
+    如果需要后期可在activity文件内容代码获取状态栏高度-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="20dp"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
         android:orientation="horizontal"
+        android:gravity="center_vertical"
         android:background="#ffffff"
-        android:gravity="center_vertical">
+        android:focusable="true"
+        android:focusableInTouchMode="true">
         <LinearLayout
             android:id="@+id/ll_location"
             android:layout_width="wrap_content"
@@ -35,13 +41,14 @@
                 android:text="合肥"/>
         </LinearLayout>
         <android.support.v7.widget.SearchView
-            android:id="@+id/sv_searchCar"
+            android:id="@+id/sv_search"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:iconifiedByDefault="false"/>
+            android:layout_weight="1">
+        </android.support.v7.widget.SearchView>
+        <!--必须加入requestFocus才可使焦点不被EditText自动获取-->
+        <requestFocus/>
     </LinearLayout>
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_carList"
         android:layout_width="match_parent"

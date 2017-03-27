@@ -71,7 +71,6 @@ class LoginActivity : AppCompatActivity() {
                             }
                         }
                     })
-
                 }
                 "001" -> { dialog.setTitle("警告").setMessage("密码长度需要在6-12位之间！").show()}
                 "002" -> { dialog.setTitle("警告").setMessage("手机号码输入不正确！").show()}

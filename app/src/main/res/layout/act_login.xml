@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:inputType="numberPassword"
+            android:inputType="textPassword"
             android:ems="16"
             android:hint="@string/tips_password"/>
 

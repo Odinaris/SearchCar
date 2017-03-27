@@ -35,15 +35,12 @@ class HomepageFragment : Fragment() {
         val view : View = inflater!!.inflate(R.layout.frag_homepage,container,false)
         return view
     }
-
-
     override fun onViewCreated(view: View,savedInstanceState: Bundle?){
         super.onViewCreated(view, savedInstanceState)
         initData()//网络加载、数据请求操作
         initView()//适配器绑定等操作
         initClickListener()//监听器绑定操作
     }
-
     fun initData(){
         val carIntroQuery = BmobQuery<ShelfCar>()
         carIntroQuery.addWhereNotEqualTo("name","")
@@ -63,7 +60,6 @@ class HomepageFragment : Fragment() {
             }
         })
     }
-
     private fun initClickListener() {
 //        bbl_car_buy.setOnClickListener({
 //            fragmentManager!!.beginTransaction()
@@ -85,13 +81,11 @@ class HomepageFragment : Fragment() {
 //        })
 
         ll_location.setOnClickListener({
+
             startActivityForResult(Intent(context,CityPickerActivity::class.java),REQUEST_CODE_PICK_CITY)
         })
 
     }
-
-
-
     //重写onActivityResult方法
     override fun onActivityResult(requestCode : Int, resultCode : Int, data : Intent) {
         if (requestCode == REQUEST_CODE_PICK_CITY && resultCode == RESULT_OK){
@@ -101,16 +95,16 @@ class HomepageFragment : Fragment() {
             //当选择城市之后更新当前车源列表
         }
     }
-
     fun initView(){
-        sv_searchCar.onActionViewExpanded()
-        sv_searchCar.setIconifiedByDefault(false)
-        sv_searchCar.isSubmitButtonEnabled = true
-        val tv_searchCar: TextView = sv_searchCar.findViewById(R.id.search_src_text) as TextView
-        tv_searchCar.text = "搜索您想要的车"
+        sv_search.onActionViewExpanded()
+        sv_search.setIconifiedByDefault(false)
+        sv_search.isSubmitButtonEnabled = true
+        val tv_searchCar: TextView = sv_search.findViewById(R.id.search_src_text) as TextView
         tv_searchCar.textSize = 14.0F
+        tv_searchCar.setHint(R.string.tips_searchCar)
         tv_searchCar.setHintTextColor(ContextCompat.getColor(context,R.color.colorPrimary))
+        tv_searchCar.clearFocus()//隐藏自动弹出的软键盘
         Input.hideSoftInput(activity)
-    }
 
+    }
 }

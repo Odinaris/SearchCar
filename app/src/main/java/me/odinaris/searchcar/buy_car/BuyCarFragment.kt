@@ -1,12 +1,10 @@
 package me.odinaris.searchcar.buy_car
 
-
 import android.app.AlertDialog
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,11 +18,6 @@ import me.odinaris.searchcar.adapter.CarAdapter
 import me.odinaris.searchcar.bean.CarIntro
 import me.odinaris.searchcar.bean.ShelfCar
 import me.odinaris.searchcar.utils.Input
-
-
-/**
- * Created by Odinaris on 2017/3/5.
- */
 
 class BuyCarFragment : Fragment() {
     private var carList: ArrayList<CarIntro>? = ArrayList()
@@ -45,14 +38,15 @@ class BuyCarFragment : Fragment() {
     }
 
     private fun initView() {
-        sv_searchCar.onActionViewExpanded()
-        sv_searchCar.setIconifiedByDefault(false)
-        sv_searchCar.isSubmitButtonEnabled = true
-        val tv_searchCar:TextView = sv_searchCar.findViewById(R.id.search_src_text) as TextView
-        tv_searchCar.text = "搜索您想要的车"
+        sv_search.onActionViewExpanded()
+        sv_search.setIconifiedByDefault(false)
+        sv_search.isSubmitButtonEnabled = true
+        val tv_searchCar:TextView = sv_search.findViewById(R.id.search_src_text) as TextView
         tv_searchCar.textSize = 14.0F
+        tv_searchCar.setHint(R.string.tips_searchCar)
         tv_searchCar.setHintTextColor(ContextCompat.getColor(context,R.color.colorPrimary))
-        Input.hideSoftInput(activity)//隐藏软键盘
+        tv_searchCar.clearFocus()
+        Input.hideSoftInput(activity)
     }
 
     private fun initData() {

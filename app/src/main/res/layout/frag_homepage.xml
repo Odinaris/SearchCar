@@ -4,9 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#ededed"
-    android:fitsSystemWindows="true"
-    >
+    android:background="#ededed">
     <!--paddingTop预留20dp是为了不被状态栏遮挡activity内容，
     如果需要后期可在activity文件内容代码获取状态栏高度-->
     <LinearLayout
@@ -16,12 +14,19 @@
         android:paddingEnd="8dp"
         android:orientation="horizontal"
         android:background="#ffffff"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:gravity="center_vertical">
         <LinearLayout
             android:id="@+id/ll_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_location"/>
             <TextView
                 android:id="@+id/tv_location"
                 android:layout_width="wrap_content"
@@ -34,15 +39,13 @@
                 android:text="合肥"/>
         </LinearLayout>
         <android.support.v7.widget.SearchView
-            android:id="@+id/sv_searchCar"
+            android:id="@+id/sv_search"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:iconifiedByDefault="false"
-            android:queryHint="搜索您想要的车"
-            android:queryBackground="@color/blue_grey_900"
-            android:submitBackground="@color/blue_grey_900"
-            android:focusable="false"/>
+            android:layout_weight="1">
+        </android.support.v7.widget.SearchView>
+        <!--必须加入requestFocus才可使焦点不被EditText自动获取-->
+        <requestFocus/>
     </LinearLayout>
 
     <android.support.v4.widget.NestedScrollView
