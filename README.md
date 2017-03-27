@@ -6,7 +6,7 @@
 ##### 项目记录
 1. 自定义TabLayout控件，学习制作如Flyme6风格的TabLayout控件
 2. 用户设置资料，包括上传图片裁剪生成圆形头像
-3. 解决自动获取EditText焦点问题
+3. 解决自动获取EditText焦点问题(SearchView焦点无法隐藏，待解决)
 4. 自定义Fragment切换动画(优化卡顿)
 5. kotlin学习接口，抽象类
 6. 实现对话框加载动画

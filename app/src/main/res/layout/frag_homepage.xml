@@ -4,13 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#ededed">
+    android:background="#ededed"
+    android:fitsSystemWindows="true"
+    >
     <!--paddingTop预留20dp是为了不被状态栏遮挡activity内容，
     如果需要后期可在activity文件内容代码获取状态栏高度-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="20dp"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
         android:orientation="horizontal"
@@ -20,13 +21,7 @@
             android:id="@+id/ll_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingEnd="8dp">
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_location"/>
+            android:orientation="horizontal">
             <TextView
                 android:id="@+id/tv_location"
                 android:layout_width="wrap_content"
@@ -38,22 +33,19 @@
                 android:textColor="@color/colorPrimary"
                 android:text="合肥"/>
         </LinearLayout>
-        <EditText
+        <android.support.v7.widget.SearchView
+            android:id="@+id/sv_searchCar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="14dp"
-            android:textColorHint="@color/blue_grey_900"
-            android:hint="@string/tips_searchCar"/>
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_left_message"
-            android:layout_marginStart="8dp"/>
+            android:iconifiedByDefault="false"
+            android:queryHint="搜索您想要的车"
+            android:queryBackground="@color/blue_grey_900"
+            android:submitBackground="@color/blue_grey_900"
+            android:focusable="false"/>
     </LinearLayout>
 
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
@@ -347,6 +339,7 @@
                     android:text="查看全部车源"
                     android:textSize="16sp"
                     android:textColor="#fff"
+                    android:layout_marginTop="8dp"
                     android:backgroundTint="@color/colorPrimaryDark"/>
             </LinearLayout>
 
@@ -383,14 +376,8 @@
                         android:layout_height="wrap_content">
                     </android.support.v7.widget.RecyclerView>
                 </LinearLayout>
-
-
             </LinearLayout>
-
-
         </LinearLayout>
-    </ScrollView>
-
-
+    </android.support.v4.widget.NestedScrollView>
 
 </LinearLayout>

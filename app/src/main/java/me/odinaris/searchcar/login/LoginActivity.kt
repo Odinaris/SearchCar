@@ -21,6 +21,7 @@ import me.odinaris.searchcar.main.MainActivity
 import android.content.Intent
 import android.view.inputmethod.InputMethodManager
 import cn.bmob.v3.exception.BmobException
+import me.odinaris.searchcar.utils.Input
 
 
 class LoginActivity : AppCompatActivity() {
@@ -46,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
             when(stateCode){
                 "000" -> {
                     //progress.show()
-                    hideSoftInput()//如果符合登陆条件，则隐藏软键盘
+                    Input.hideSoftInput(this)//如果符合登陆条件，则隐藏软键盘
                     val user = userInfo()
                     user.username = phone
                     user.setPassword(password)
@@ -165,13 +166,6 @@ class LoginActivity : AppCompatActivity() {
         else return password.matches(passwordRegex.toRegex())
     }
 
-    private fun hideSoftInput(){
-        val view = window.peekDecorView()
-        if(view!=null){
-            val im = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            im.hideSoftInputFromWindow(view.windowToken,0)
-        }
-    }
     override fun onStop() {
         super.onStop()
         finish()

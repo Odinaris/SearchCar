@@ -12,18 +12,22 @@ class ShelfCar : BmobObject() {
     var driveMode: String = ""          //驱动方式
     var emissionStandard: String = ""   //排放标准
     var fuelType: String = ""           //燃油类型
-    var imgUrl1: String = ""               //图片链接1
-    var imgUrl2: String = ""               //图片链接2
-    var imgUrl3: String = ""               //图片链接3
+    var cover: String = ""              //图片链接
     var maxSpeed: String = ""           //最大马力
     var mileAge: String = ""            //里程
     var newPrice: String = ""           //原价
     var price: String = ""              //价格
     var registerTime: String = ""       //上牌时间
-    //var shelfTime: String = ""          //上架时间
+    //var shelfTime: String = ""        //上架时间
     var size: String = ""               //长/宽/高
     var vendor: String = ""             //厂商
     var weight: String = ""             //整备重量
     var transmission: String = ""       //变速器
     var applyPhone: String = ""         //预约电话
+    var link_detail:String = ""         //详情页链接
+    var level:String = ""               //级别
+    var introduction:String = ""        //卖家介绍
+    var testResult:String = ""          //测试结果
+    var structure:String = ""           //结构
+    var city:String = ""                //所在城市
 }

@@ -21,10 +21,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:bnbInactiveColor="#ffffff"
+        app:bnbInactiveColor="#8e8e8e"
         app:bnbMode="mode_fixed"
         app:bnbBackgroundStyle="background_style_ripple"
-        app:bnbActiveColor="#414141"
-        app:bnbBackgroundColor="#FFE14D"/>
+        app:bnbActiveColor="#000000"
+        app:bnbBackgroundColor="#ffffff"/>
 
 </LinearLayout>

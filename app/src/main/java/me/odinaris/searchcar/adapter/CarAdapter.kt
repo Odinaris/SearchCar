@@ -21,7 +21,7 @@ class CarAdapter(val carList: ArrayList<CarIntro>, val context: Context) :
         holder.name.text = carInfo.name
         holder.registerTime.text = carInfo.registerTime
         holder.mileAge.text = carInfo.mileAge
-        holder.price.text = carInfo.price
+        holder.price.text = carInfo.price+"万"
         holder.newPrice.text = carInfo.newPrice
         holder.newPrice.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
         Glide.with(context).load(Uri.parse(carInfo.imageUrl)).into(holder.img)

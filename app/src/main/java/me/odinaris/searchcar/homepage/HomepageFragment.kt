@@ -6,10 +6,12 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import cn.bmob.v3.BmobQuery
 import cn.bmob.v3.exception.BmobException
 import cn.bmob.v3.listener.FindListener
@@ -22,11 +24,8 @@ import me.odinaris.searchcar.bean.ShelfCar
 import me.odinaris.searchcar.buy_car.BuyCarFragment
 import me.odinaris.searchcar.rent_car.RentCarFragment
 import me.odinaris.searchcar.sale_car_car.SaleCarFragment
+import me.odinaris.searchcar.utils.Input
 
-
-/**
- * Created by Odinaris on 2017/3/5.
- */
 
 class HomepageFragment : Fragment() {
     private val REQUEST_CODE_PICK_CITY = 0
@@ -37,11 +36,6 @@ class HomepageFragment : Fragment() {
         return view
     }
 
-    override fun onResume() {
-        super.onResume()
-        //将用户当前选择城市存储在SharePreference中用于其他模块查询
-        //当选择城市之后更新当前车源列表
-    }
 
     override fun onViewCreated(view: View,savedInstanceState: Bundle?){
         super.onViewCreated(view, savedInstanceState)
@@ -52,46 +46,43 @@ class HomepageFragment : Fragment() {
 
     fun initData(){
         val carIntroQuery = BmobQuery<ShelfCar>()
-        carIntroQuery.addWhereEqualTo("applyPhone","400-057-8600")
-        carIntroQuery.setLimit(6)
-        carIntroQuery.order("-registerTime")
+        carIntroQuery.addWhereNotEqualTo("name","")
+        carIntroQuery.setLimit(10)
+        carIntroQuery.order("-objectId")
         carIntroQuery.findObjects(object : FindListener<ShelfCar>(){
             override fun done(p0: MutableList<ShelfCar>?, e: BmobException?) {
                 if(e==null){
-                    p0!!.map { CarIntro(it.name, it.imgUrl1, it.registerTime, it.mileAge, it.price, it.newPrice)
+                    p0!!.map { CarIntro(it.name, it.cover, it.registerTime, it.mileAge, it.price, it.newPrice)
                     }.forEach { carList!!.add(it) }
                     rv_hotCar.layoutManager = LinearLayoutManager(context)
                     rv_hotCar.adapter = CarAdapter(carList!!,context)
                 }else{
                     val dialog = AlertDialog.Builder(context)
                     dialog.setMessage("数据请求出错！"+e.errorCode+e.message).show()
-
                 }
             }
         })
-
-
     }
 
     private fun initClickListener() {
-        bbl_car_buy.setOnClickListener({
-            fragmentManager!!.beginTransaction()
-                    .addToBackStack(null)
-                    .replace(R.id.main_container, BuyCarFragment())
-                    .commit()
-        })
-        bbl_car_rent.setOnClickListener({
-            fragmentManager!!.beginTransaction()
-                    .addToBackStack(null)
-                    .replace(R.id.main_container, RentCarFragment())
-                    .commit()
-        })
-        bbl_car_sale.setOnClickListener({
-            fragmentManager!!.beginTransaction()
-                    .addToBackStack(null)
-                    .replace(R.id.main_container, SaleCarFragment())
-                    .commit()
-        })
+//        bbl_car_buy.setOnClickListener({
+//            fragmentManager!!.beginTransaction()
+//                    .addToBackStack(null)
+//                    .replace(R.id.main_container, BuyCarFragment())
+//                    .commit()
+//        })
+//        bbl_car_rent.setOnClickListener({
+//            fragmentManager!!.beginTransaction()
+//                    .addToBackStack(null)
+//                    .replace(R.id.main_container, RentCarFragment())
+//                    .commit()
+//        })
+//        bbl_car_sale.setOnClickListener({
+//            fragmentManager!!.beginTransaction()
+//                    .addToBackStack(null)
+//                    .replace(R.id.main_container, SaleCarFragment())
+//                    .commit()
+//        })
 
         ll_location.setOnClickListener({
             startActivityForResult(Intent(context,CityPickerActivity::class.java),REQUEST_CODE_PICK_CITY)
@@ -106,10 +97,20 @@ class HomepageFragment : Fragment() {
         if (requestCode == REQUEST_CODE_PICK_CITY && resultCode == RESULT_OK){
             val city = data.getStringExtra(CityPickerActivity.KEY_PICKED_CITY)
             tv_location.text = city
+            //将用户当前选择城市存储在SharePreference中用于其他模块查询
+            //当选择城市之后更新当前车源列表
         }
     }
 
     fun initView(){
-
+        sv_searchCar.onActionViewExpanded()
+        sv_searchCar.setIconifiedByDefault(false)
+        sv_searchCar.isSubmitButtonEnabled = true
+        val tv_searchCar: TextView = sv_searchCar.findViewById(R.id.search_src_text) as TextView
+        tv_searchCar.text = "搜索您想要的车"
+        tv_searchCar.textSize = 14.0F
+        tv_searchCar.setHintTextColor(ContextCompat.getColor(context,R.color.colorPrimary))
+        Input.hideSoftInput(activity)
     }
+
 }
