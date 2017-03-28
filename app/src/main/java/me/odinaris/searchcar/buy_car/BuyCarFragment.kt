@@ -29,18 +29,14 @@ class BuyCarFragment : Fragment() {
         val view : View = inflater!!.inflate(R.layout.frag_car_buy,container,false)
         return view
     }
-
     override fun onViewCreated(view: View,savedInstanceState: Bundle?){
         super.onViewCreated(view, savedInstanceState)
         initView()//适配器绑定等操作
         initClickListener()//监听器绑定操作
         initData()//网络加载、数据请求操作
     }
-
     private fun initClickListener() {
-        ll_filterBox.setOnClickListener({
-            startActivityForResult(Intent(context,FilterCarActivity::class.java),REQUEST_CODE_FILTER)
-        })
+        ll_filterBox.setOnClickListener({ startActivityForResult(Intent(context,FilterCarActivity::class.java),REQUEST_CODE_FILTER) })
     }
     private fun initView() {
         et_search.clearFocus()

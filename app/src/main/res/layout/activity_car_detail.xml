@@ -10,7 +10,8 @@
         android:id="@+id/abl_bar"
         android:layout_width="match_parent"
         android:layout_height="260sp"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        android:visibility="gone">
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/ctl_toolbar"
             android:layout_width="match_parent"
@@ -47,13 +48,139 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
     <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nsv_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="test" />
+        android:padding="16sp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:visibility="gone">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:text="test"
+                android:maxLines="2"
+                android:layout_marginBottom="8sp"/>
+            <!--价格信息-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="车主报价"
+                    android:textSize="14sp"/>
+                <TextView
+                    android:id="@+id/tv_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5.4万"
+                    android:textSize="18sp"
+                    android:textColor="#e11515"
+                    android:layout_marginStart="8sp"
+                    android:layout_marginEnd="8sp"/>
+                <TextView
+                    android:id="@+id/tv_newPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="新车含税5.5万"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+            <!--参数信息-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16sp"
+                android:text="参数信息"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:gravity="center"/>
+            <!--卖家介绍-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16sp"
+                android:text="卖家介绍"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:gravity="center"/>
+            <TextView
+                android:id="@+id/tv_intro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="卖家介绍"
+                android:textColor="#000000"
+                android:textStyle="normal"
+                android:textSize="16sp"
+                android:gravity="center"/>
+            <!--测试报告-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16sp"
+                android:text="测试报告"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:gravity="center"/>
+            <TextView
+                android:id="@+id/tv_testResult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="测试结果"
+                android:textColor="#000000"
+                android:textStyle="normal"
+                android:textSize="16sp"
+                android:gravity="center"/>
+        </LinearLayout>
+
     </android.support.v4.widget.NestedScrollView>
+    <LinearLayout
+        android:id="@+id/ll_apply"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="bottom"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        android:visibility="gone">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="预约看车"
+            android:textSize="18sp"
+            android:textColor="#fff"
+            android:textStyle="normal"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_loadingView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_margin="8sp"
+            android:text="加载中..."
+            android:gravity="center"/>
+    </LinearLayout>
+
 </android.support.design.widget.CoordinatorLayout>
