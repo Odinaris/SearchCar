@@ -1,7 +1,8 @@
 package me.odinaris.searchcar.buy_car
 
+import android.app.Activity.RESULT_OK
 import android.app.AlertDialog
-import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
@@ -17,12 +18,12 @@ import cn.bmob.v3.listener.FindListener
 import me.odinaris.searchcar.adapter.CarAdapter
 import me.odinaris.searchcar.bean.CarIntro
 import me.odinaris.searchcar.bean.ShelfCar
+import me.odinaris.searchcar.utils.FilterCarActivity
 import java.util.*
 
 class BuyCarFragment : Fragment() {
+    private val REQUEST_CODE_FILTER = 0
     private var carList: ArrayList<CarIntro>? = ArrayList()
-    private var viewList: ArrayList<View> = ArrayList()
-    private val sortList: List<String> = ArrayList(Arrays.asList("智能排序","最新上架","价格最低"))
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view : View = inflater!!.inflate(R.layout.frag_car_buy,container,false)
@@ -32,21 +33,21 @@ class BuyCarFragment : Fragment() {
     override fun onViewCreated(view: View,savedInstanceState: Bundle?){
         super.onViewCreated(view, savedInstanceState)
         initView()//适配器绑定等操作
-        initData()//网络加载、数据请求操作
         initClickListener()//监听器绑定操作
+        initData()//网络加载、数据请求操作
     }
 
     private fun initClickListener() {
+        ll_filterBox.setOnClickListener({
+            startActivityForResult(Intent(context,FilterCarActivity::class.java),REQUEST_CODE_FILTER)
+        })
     }
-
     private fun initView() {
         et_search.clearFocus()
         val drawable = ContextCompat.getDrawable(context,R.drawable.ic_search)
         drawable.setBounds(0,0,40,40)
         et_search.setCompoundDrawables(drawable,null,null,null)
-
     }
-
     private fun initData() {
         val carIntroQuery = BmobQuery<ShelfCar>()
         carIntroQuery.addWhereNotEqualTo("objectId","")
@@ -66,5 +67,16 @@ class BuyCarFragment : Fragment() {
                 }
             }
         })
+    }
+    //重写onActivityResult方法
+    override fun onActivityResult(requestCode : Int, resultCode : Int, data : Intent) {
+        if (requestCode == REQUEST_CODE_FILTER && resultCode == RESULT_OK){
+            val bundle = data.extras
+            val selectedSort = bundle.getString("selectedSort")
+            val selectedPrice = if(bundle.getString("selectedPrice")==("不限")) "" else ",价格"+bundle.getString("selectedPrice")
+            val selectedMileAge = if(bundle.getString("selectedMileAge")==("不限")) "" else ",里程"+bundle.getString("selectedMileAge")
+            val selectedEmission = if(bundle.getString("selectedEmission")==("不限")) "" else ",排放标准"+bundle.getString("selectedEmission")
+            tv_filterResult.text = "$selectedSort$selectedPrice$selectedMileAge$selectedEmission"
+        }
     }
 }
