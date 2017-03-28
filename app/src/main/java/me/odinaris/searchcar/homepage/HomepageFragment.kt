@@ -30,6 +30,7 @@ import me.odinaris.searchcar.utils.Input
 class HomepageFragment : Fragment() {
     private val REQUEST_CODE_PICK_CITY = 0
     private var carList: ArrayList<CarIntro>? = ArrayList()
+    private var viewList: ArrayList<View> = ArrayList()
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view : View = inflater!!.inflate(R.layout.frag_homepage,container,false)
@@ -104,7 +105,9 @@ class HomepageFragment : Fragment() {
         tv_searchCar.setHint(R.string.tips_searchCar)
         tv_searchCar.setHintTextColor(ContextCompat.getColor(context,R.color.colorPrimary))
         tv_searchCar.clearFocus()//隐藏自动弹出的软键盘
-        Input.hideSoftInput(activity)
+        viewList.add(sv_search)
+        viewList.add(tv_searchCar)
+        Input.hideSoftInput(context,viewList)
 
     }
 }

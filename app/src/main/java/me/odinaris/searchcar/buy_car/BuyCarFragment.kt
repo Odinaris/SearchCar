@@ -1,6 +1,7 @@
 package me.odinaris.searchcar.buy_car
 
 import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
@@ -21,6 +22,8 @@ import me.odinaris.searchcar.utils.Input
 
 class BuyCarFragment : Fragment() {
     private var carList: ArrayList<CarIntro>? = ArrayList()
+    private var viewList: ArrayList<View> = ArrayList()
+
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view : View = inflater!!.inflate(R.layout.frag_car_buy,container,false)
@@ -29,8 +32,8 @@ class BuyCarFragment : Fragment() {
 
     override fun onViewCreated(view: View,savedInstanceState: Bundle?){
         super.onViewCreated(view, savedInstanceState)
-        initData()//网络加载、数据请求操作
         initView()//适配器绑定等操作
+        initData()//网络加载、数据请求操作
         initClickListener()//监听器绑定操作
     }
 
@@ -46,7 +49,9 @@ class BuyCarFragment : Fragment() {
         tv_searchCar.setHint(R.string.tips_searchCar)
         tv_searchCar.setHintTextColor(ContextCompat.getColor(context,R.color.colorPrimary))
         tv_searchCar.clearFocus()
-        Input.hideSoftInput(activity)
+        viewList.add(sv_search)
+        viewList.add(tv_searchCar)
+        Input.hideSoftInput(context,viewList)
     }
 
     private fun initData() {
@@ -61,6 +66,9 @@ class BuyCarFragment : Fragment() {
                     }.forEach { carList!!.add(it) }
                     rv_carList.layoutManager = LinearLayoutManager(context)
                     rv_carList.adapter = CarAdapter(carList!!,context)
+                    viewList.add(sv_search)
+                    viewList.add(sv_search.findViewById(R.id.search_src_text))
+                    Input.hideSoftInput(context,viewList)
                 }else{
                     val dialog = AlertDialog.Builder(context)
                     dialog.setMessage("数据请求出错！"+e.errorCode+e.message).show()

@@ -2,6 +2,7 @@ package me.odinaris.searchcar.utils
 
 import android.app.Activity
 import android.content.Context
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 
 /**
@@ -16,6 +17,14 @@ object Input {
             im.hideSoftInputFromWindow(view.windowToken,0)
             val im1 = act.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             im1.hideSoftInputFromWindow(view1.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+        }
+    }
+
+    fun hideSoftInput(context: Context, viewList: List<View>?){
+        if (viewList==null) return
+        val im = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        for(v:View in viewList){
+            im.hideSoftInputFromInputMethod(v.windowToken,InputMethodManager.HIDE_NOT_ALWAYS)
         }
     }
 }
