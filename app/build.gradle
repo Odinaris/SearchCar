@@ -30,7 +30,6 @@ android {
     }
 }
 
-
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -65,6 +64,8 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
     //仿美团城市选择控件
     compile 'com.zaaach:citypicker:1.1'
+    //MD风格下拉菜单
+    compile 'com.jaredrummler:material-spinner:1.1.0'
 }
 repositories {
     maven {
