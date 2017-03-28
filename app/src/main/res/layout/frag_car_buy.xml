@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ll_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,82 +9,98 @@
     android:background="#ededed"
     android:fitsSystemWindows="true"
     android:clipToPadding="true">
-    <!--paddingTop预留20dp是为了不被状态栏遮挡activity内容，
-    如果需要后期可在activity文件内容代码获取状态栏高度-->
-    <LinearLayout
+    <!--Header-->
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:background="#ffffff"
-        android:focusable="true"
-        android:focusableInTouchMode="true">
+        app:cardElevation="8dp">
         <LinearLayout
-            android:id="@+id/ll_location"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_location"/>
-            <TextView
-                android:id="@+id/tv_location"
-                android:layout_width="wrap_content"
+            android:orientation="vertical">
+            <!--SearchBox-->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:textSize="16sp"
-                android:textColor="@color/colorPrimary"
-                android:text="合肥"/>
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="#ffffff"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_location"/>
+                <TextView
+                    android:id="@+id/tv_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorPrimary"
+                    android:text="合肥"/>
+                <EditText
+                    android:id="@+id/et_search"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textSize="14sp"
+                    android:textColor="#000"
+                    android:hint="@string/tips_search"
+                    android:drawablePadding="10dp"
+                    android:maxLines="1">
+                </EditText>
+                <!--必须加入requestFocus才可使焦点不被EditText自动获取-->
+                <requestFocus/>
+            </LinearLayout>
+            <!--FilterBox-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tips_filter"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="16sp"/>
+                    <TextView
+                        android:id="@+id/tv_filterResult"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="8dp"
+                        android:text="筛选条件未选择"
+                        android:textSize="14sp"/>
+                </LinearLayout>
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_more"
+                    android:tint="@color/colorPrimary"/>
+            </LinearLayout>
         </LinearLayout>
-
-        <EditText
-            android:id="@+id/et_search"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textSize="14sp"
-            android:textColor="#000"
-            android:hint="@string/tips_search"
-            android:drawableStart="@drawable/ic_search"
-            android:drawablePadding="10dp"
-            android:maxLines="1">
-        </EditText>
-        <!--必须加入requestFocus才可使焦点不被EditText自动获取-->
-        <requestFocus/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Spinner
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-        <Spinner
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-        <Spinner
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-        <Spinner
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-    </LinearLayout>
-
+    </android.support.v7.widget.CardView>
+    <!--Content-->
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_carList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="#fff">
     </android.support.v7.widget.RecyclerView>
-
-
 </LinearLayout>

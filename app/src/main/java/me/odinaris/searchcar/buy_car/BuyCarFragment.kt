@@ -19,13 +19,12 @@ import cn.bmob.v3.listener.FindListener
 import me.odinaris.searchcar.adapter.CarAdapter
 import me.odinaris.searchcar.bean.CarIntro
 import me.odinaris.searchcar.bean.ShelfCar
-import me.odinaris.searchcar.utils.Input
 import java.util.*
 
 class BuyCarFragment : Fragment() {
     private var carList: ArrayList<CarIntro>? = ArrayList()
     private var viewList: ArrayList<View> = ArrayList()
-
+    private val sortList: List<String> = ArrayList(Arrays.asList("智能排序","最新上架","价格最低"))
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view : View = inflater!!.inflate(R.layout.frag_car_buy,container,false)
@@ -47,6 +46,7 @@ class BuyCarFragment : Fragment() {
         val drawable = ContextCompat.getDrawable(context,R.drawable.ic_search)
         drawable.setBounds(0,0,40,40)
         et_search.setCompoundDrawables(drawable,null,null,null)
+
     }
 
     private fun initData() {
