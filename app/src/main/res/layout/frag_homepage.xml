@@ -39,7 +39,7 @@
                 android:text="合肥"/>
         </LinearLayout>
         <android.support.v7.widget.SearchView
-            android:id="@+id/sv_search"
+            android:id="@+id/et_search"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1">

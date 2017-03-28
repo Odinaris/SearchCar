@@ -25,12 +25,14 @@ import me.odinaris.searchcar.buy_car.BuyCarFragment
 import me.odinaris.searchcar.rent_car.RentCarFragment
 import me.odinaris.searchcar.sale_car_car.SaleCarFragment
 import me.odinaris.searchcar.utils.Input
+import java.util.*
 
 
 class HomepageFragment : Fragment() {
     private val REQUEST_CODE_PICK_CITY = 0
     private var carList: ArrayList<CarIntro>? = ArrayList()
     private var viewList: ArrayList<View> = ArrayList()
+
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view : View = inflater!!.inflate(R.layout.frag_homepage,container,false)
@@ -97,15 +99,15 @@ class HomepageFragment : Fragment() {
         }
     }
     fun initView(){
-        sv_search.onActionViewExpanded()
-        sv_search.setIconifiedByDefault(false)
-        sv_search.isSubmitButtonEnabled = true
-        val tv_searchCar: TextView = sv_search.findViewById(R.id.search_src_text) as TextView
+        et_search.onActionViewExpanded()
+        et_search.setIconifiedByDefault(false)
+        et_search.isSubmitButtonEnabled = true
+        val tv_searchCar: TextView = et_search.findViewById(R.id.search_src_text) as TextView
         tv_searchCar.textSize = 14.0F
         tv_searchCar.setHint(R.string.tips_searchCar)
         tv_searchCar.setHintTextColor(ContextCompat.getColor(context,R.color.colorPrimary))
         tv_searchCar.clearFocus()//隐藏自动弹出的软键盘
-        viewList.add(sv_search)
+        viewList.add(et_search)
         viewList.add(tv_searchCar)
         Input.hideSoftInput(context,viewList)
 

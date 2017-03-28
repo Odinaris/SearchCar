@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import me.odinaris.searchcar.R
 import kotlinx.android.synthetic.main.frag_car_buy.*
 import android.widget.TextView
@@ -19,6 +20,7 @@ import me.odinaris.searchcar.adapter.CarAdapter
 import me.odinaris.searchcar.bean.CarIntro
 import me.odinaris.searchcar.bean.ShelfCar
 import me.odinaris.searchcar.utils.Input
+import java.util.*
 
 class BuyCarFragment : Fragment() {
     private var carList: ArrayList<CarIntro>? = ArrayList()
@@ -41,17 +43,10 @@ class BuyCarFragment : Fragment() {
     }
 
     private fun initView() {
-        sv_search.onActionViewExpanded()
-        sv_search.setIconifiedByDefault(false)
-        sv_search.isSubmitButtonEnabled = true
-        val tv_searchCar:TextView = sv_search.findViewById(R.id.search_src_text) as TextView
-        tv_searchCar.textSize = 14.0F
-        tv_searchCar.setHint(R.string.tips_searchCar)
-        tv_searchCar.setHintTextColor(ContextCompat.getColor(context,R.color.colorPrimary))
-        tv_searchCar.clearFocus()
-        viewList.add(sv_search)
-        viewList.add(tv_searchCar)
-        Input.hideSoftInput(context,viewList)
+        et_search.clearFocus()
+        val drawable = ContextCompat.getDrawable(context,R.drawable.ic_search)
+        drawable.setBounds(0,0,40,40)
+        et_search.setCompoundDrawables(drawable,null,null,null)
     }
 
     private fun initData() {
@@ -66,9 +61,6 @@ class BuyCarFragment : Fragment() {
                     }.forEach { carList!!.add(it) }
                     rv_carList.layoutManager = LinearLayoutManager(context)
                     rv_carList.adapter = CarAdapter(carList!!,context)
-                    viewList.add(sv_search)
-                    viewList.add(sv_search.findViewById(R.id.search_src_text))
-                    Input.hideSoftInput(context,viewList)
                 }else{
                     val dialog = AlertDialog.Builder(context)
                     dialog.setMessage("数据请求出错！"+e.errorCode+e.message).show()

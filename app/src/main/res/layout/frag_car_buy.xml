@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    android:id="@+id/ll_main"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -41,19 +41,22 @@
                 android:textColor="@color/colorPrimary"
                 android:text="合肥"/>
         </LinearLayout>
-        <android.support.v7.widget.SearchView
-            android:id="@+id/sv_search"
+
+        <EditText
+            android:id="@+id/et_search"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-        </android.support.v7.widget.SearchView>
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="14sp"
+            android:textColor="#000"
+            android:hint="@string/tips_search"
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="10dp"
+            android:maxLines="1">
+        </EditText>
         <!--必须加入requestFocus才可使焦点不被EditText自动获取-->
         <requestFocus/>
     </LinearLayout>
-    <TextView
-        android:id="@+id/test"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_carList"
         android:layout_width="match_parent"
