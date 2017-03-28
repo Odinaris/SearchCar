@@ -22,23 +22,16 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
     <uses-permission android:name="android.permission.READ_PROFILE"/>
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/logo_sj"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".main.MainActivity"
-            android:windowSoftInputMode="adjustPan|stateHidden">
-        </activity>
-        <activity android:name=".login.LoginActivity">
-        </activity>
-        <activity android:name=".login.RegisterActivity">
-        </activity>
-        <activity
-            android:name=".main.SplashActivity"
+        <activity android:name=".main.MainActivity" android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity android:name=".login.LoginActivity"/>
+        <activity android:name=".login.RegisterActivity"/>
+        <activity android:name=".main.SplashActivity"
             android:theme="@android:style/Theme.Material.NoActionBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -46,25 +39,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.zaaach.citypicker.CityPickerActivity"
+        <activity android:name="com.zaaach.citypicker.CityPickerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/CityPicker.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustPan"/>
-        <activity
-            android:name=".LoginaActivity"
-            android:label="@string/title_activity_logina">
-        </activity>
-        <activity
-            android:name=".utils.MActivity"
-            android:label="@string/title_activity_m">
-        </activity>
-        <activity
-            android:name=".utils.CarDetailActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_car_detail"
-            android:theme="@style/FullscreenTheme">
-        </activity>
+        <activity android:name=".utils.CarDetailActivity" android:label="@string/title_activity_car_detail"/>
+        <activity android:name=".utils.FilterCarActivity"/>
     </application>
-
 </manifest>

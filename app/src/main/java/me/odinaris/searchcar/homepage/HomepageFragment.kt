@@ -52,7 +52,9 @@ class HomepageFragment : Fragment() {
         carIntroQuery.findObjects(object : FindListener<ShelfCar>(){
             override fun done(p0: MutableList<ShelfCar>?, e: BmobException?) {
                 if(e==null){
-                    p0!!.map { CarIntro(it.name, it.cover, it.registerTime, it.mileAge, it.price, it.newPrice)
+                    p0!!.map {
+                        CarIntro(it.name, it.cover, it.registerTime,
+                                it.mileAge, it.price, it.newPrice,it.objectId)
                     }.forEach { carList!!.add(it) }
                     rv_hotCar.layoutManager = LinearLayoutManager(context)
                     rv_hotCar.adapter = CarAdapter(carList!!,context)
@@ -87,7 +89,6 @@ class HomepageFragment : Fragment() {
 
             startActivityForResult(Intent(context,CityPickerActivity::class.java),REQUEST_CODE_PICK_CITY)
         })
-
     }
     //重写onActivityResult方法
     override fun onActivityResult(requestCode : Int, resultCode : Int, data : Intent) {
@@ -110,6 +111,5 @@ class HomepageFragment : Fragment() {
         viewList.add(et_search)
         viewList.add(tv_searchCar)
         Input.hideSoftInput(context,viewList)
-
     }
 }

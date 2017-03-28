@@ -1,6 +1,7 @@
 package me.odinaris.searchcar.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Paint
 import android.net.Uri
 import android.support.v7.widget.RecyclerView
@@ -12,6 +13,7 @@ import android.widget.ImageView
 import me.odinaris.searchcar.R
 import android.view.LayoutInflater
 import com.bumptech.glide.Glide
+import me.odinaris.searchcar.utils.CarDetailActivity
 
 class CarAdapter(val carList: ArrayList<CarIntro>, val context: Context) :
         RecyclerView.Adapter<CarAdapter.ViewHolder>() {
@@ -26,7 +28,9 @@ class CarAdapter(val carList: ArrayList<CarIntro>, val context: Context) :
         holder.newPrice.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
         Glide.with(context).load(Uri.parse(carInfo.imageUrl)).into(holder.img)
         holder.itemView.setOnClickListener({
-            //跳转汽车详情页
+            val intent = Intent(context,CarDetailActivity::class.java)
+            intent.putExtra("objectId",carInfo.objectId)
+            context.startActivity(intent)//跳转汽车详情页
         })
 
 

@@ -9,10 +9,8 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import me.odinaris.searchcar.R
 import kotlinx.android.synthetic.main.frag_car_buy.*
-import android.widget.TextView
 import cn.bmob.v3.BmobQuery
 import cn.bmob.v3.exception.BmobException
 import cn.bmob.v3.listener.FindListener
@@ -57,7 +55,8 @@ class BuyCarFragment : Fragment() {
         carIntroQuery.findObjects(object : FindListener<ShelfCar>(){
             override fun done(p0: MutableList<ShelfCar>?, e: BmobException?) {
                 if(e==null){
-                    p0!!.map { CarIntro(it.name, it.cover, it.registerTime, it.mileAge, it.price, it.newPrice)
+                    p0!!.map { CarIntro(it.name, it.cover, it.registerTime,
+                            it.mileAge, it.price, it.newPrice,it.objectId)
                     }.forEach { carList!!.add(it) }
                     rv_carList.layoutManager = LinearLayoutManager(context)
                     rv_carList.adapter = CarAdapter(carList!!,context)
