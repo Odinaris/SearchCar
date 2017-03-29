@@ -1,28 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
-
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_saleBox"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="20dp"
-        android:orientation="vertical"
-        android:background="#FFE14D">
-
+        android:orientation="horizontal"
+        android:layout_marginBottom="72sp"
+        android:layout_marginTop="72sp"
+        android:layout_gravity="center"
+        android:gravity="center">
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:textSize="18dp"
-            android:textColor="#000"
-            android:text="卖车"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="索骥"
+            android:textStyle="bold"
+            android:textColor="#ffe41a"
+            android:textSize="32sp"
+            android:gravity="center"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="二手车"
+            android:textStyle="normal"
+            android:textColor="#fff"
+            android:textSize="32sp"
+            android:gravity="center"/>
     </LinearLayout>
-
-    <TextView
+    <EditText
+        android:id="@+id/et_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="主页用来展示用户售车信息和租车信息以及其他"/>
-
+        android:layout_marginTop="48sp"
+        android:layout_marginStart="16sp"
+        android:layout_marginEnd="16sp"
+        android:hint="请输入手机号"
+        android:textColorHint="#e2e2e2"
+        android:textColor="#fff"
+        android:background="@null"
+        android:inputType="phone"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0.1sp"
+        android:background="#fff"
+        android:layout_marginBottom="24sp"
+        android:layout_marginTop="4sp"
+        android:layout_marginStart="16sp"
+        android:layout_marginEnd="16sp"
+        android:orientation="horizontal"/>
+    <Button
+        android:id="@+id/btn_apply"
+        android:layout_width="match_parent"
+        android:layout_height="48sp"
+        android:background="#ffe41a"
+        android:layout_margin="16sp"
+        android:textColor="@color/colorPrimary"
+        android:text="预约卖车"
+        android:textSize="20sp"/>
 </LinearLayout>

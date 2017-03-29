@@ -13,6 +13,7 @@
 7. TextWatcher功能分析使用
 8. 学习Fragment之间跳转(跳转成功，但底部导航栏没有随之跳转无法返回，待解决)
 9. 学习Spinner控件使用及startActivityForResult()
+
 ##### 首页
 1. 买车常用候选，用于快速选择目标车型
 2. 最新车型推荐

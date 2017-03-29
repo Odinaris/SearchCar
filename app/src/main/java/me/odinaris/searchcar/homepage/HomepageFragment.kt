@@ -23,7 +23,7 @@ import me.odinaris.searchcar.adapter.CarAdapter
 import me.odinaris.searchcar.bean.CarIntro
 import me.odinaris.searchcar.bean.ShelfCar
 import me.odinaris.searchcar.buy_car.BuyCarFragment
-import me.odinaris.searchcar.sale_car_car.SaleCarFragment
+import me.odinaris.searchcar.sale_car.SaleCarFragment
 import me.odinaris.searchcar.utils.DisScrollLinearLayoutManager
 import me.odinaris.searchcar.utils.Input
 import java.util.*

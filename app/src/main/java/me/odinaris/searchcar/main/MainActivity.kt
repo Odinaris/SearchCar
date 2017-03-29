@@ -12,7 +12,7 @@ import com.ashokvarma.bottomnavigation.BottomNavigationItem
 import me.odinaris.searchcar.R
 import me.odinaris.searchcar.buy_car.BuyCarFragment
 import me.odinaris.searchcar.homepage.HomepageFragment
-import me.odinaris.searchcar.sale_car_car.SaleCarFragment
+import me.odinaris.searchcar.sale_car.SaleCarFragment
 import me.odinaris.searchcar.user.UserFragment
 import java.util.*
 import kotlinx.android.synthetic.main.act_main.*

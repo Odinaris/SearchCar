@@ -12,6 +12,7 @@ import me.odinaris.searchcar.R
 
 import cn.bmob.v3.listener.QueryListener
 import cn.bmob.v3.BmobQuery
+import cn.bmob.v3.BmobUser
 import cn.bmob.v3.exception.BmobException
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_car_detail.*
@@ -27,7 +28,22 @@ class CarDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_car_detail)
         initData()
         initView()
+        initListener()
     }
+
+    private fun initListener() {
+        ll_apply.setOnClickListener({
+            val user = BmobUser.getCurrentUser()
+            if(user!=null){
+                val dialog = AlertDialog.Builder(this)
+                dialog.setMessage("请拨打：400-606-3612 进行预约")
+                        .setPositiveButton("确定",null)
+                        .show()
+            }
+        })
+        iv_back.setOnClickListener({ this.finish()})
+    }
+
     private fun initView() {}
     private fun initData() {
         objectId = intent.getStringExtra("objectId")
