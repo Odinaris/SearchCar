@@ -7,7 +7,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,8 +21,8 @@ import me.odinaris.searchcar.adapter.CarAdapter
 import me.odinaris.searchcar.bean.CarIntro
 import me.odinaris.searchcar.bean.ShelfCar
 import me.odinaris.searchcar.buy_car.BuyCarFragment
-import me.odinaris.searchcar.rent_car.RentCarFragment
 import me.odinaris.searchcar.sale_car_car.SaleCarFragment
+import me.odinaris.searchcar.utils.DisScrollLinearLayoutManager
 import me.odinaris.searchcar.utils.Input
 import java.util.*
 
@@ -56,8 +55,12 @@ class HomepageFragment : Fragment() {
                         CarIntro(it.name, it.cover, it.registerTime,
                                 it.mileAge, it.price, it.newPrice,it.objectId)
                     }.forEach { carList!!.add(it) }
-                    rv_hotCar.layoutManager = LinearLayoutManager(context)
+                    val layoutManager = DisScrollLinearLayoutManager(context)
+                    layoutManager.setScrollEnabled(false)
+                    rv_hotCar.layoutManager = layoutManager
                     rv_hotCar.adapter = CarAdapter(carList!!,context)
+                    pb_loadingCar.visibility = View.GONE
+                    rv_hotCar.visibility = View.VISIBLE
                 }else{
                     val dialog = AlertDialog.Builder(context)
                     dialog.setMessage("数据请求出错！"+e.errorCode+e.message).show()
