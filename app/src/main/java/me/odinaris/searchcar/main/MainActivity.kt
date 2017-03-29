@@ -59,31 +59,31 @@ class MainActivity : AppCompatActivity() {
 //                        transaction.setCustomAnimations(
 //                                R.anim.slide_in_left,R.anim.slide_out_right)
                         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                        hideAllFragments(transaction)
                         when(position){
                             0 -> {
-                                hideAllFragments(transaction)
-                                if (!fragmentsList[position].isAdded) {
+                                if (!homepage.isAdded) {
                                     transaction.add(R.id.main_container, homepage).show(homepage)
-                                } else { transaction.show(homepage) }
+                                } else {
+                                    transaction.show(homepage) }
                             }
                             1 -> {
-                                hideAllFragments(transaction)
-                                if (!fragmentsList[position].isAdded) {
+                                if (!buyCar.isAdded) {
                                     transaction.add(R.id.main_container, buyCar).show(buyCar)
-
-                                } else { transaction.show(buyCar) }
+                                } else {
+                                    transaction.show(buyCar) }
                             }
                             2 -> {
-                                hideAllFragments(transaction)
-                                if (!fragmentsList[position].isAdded) {
+                                if (!saleCar.isAdded) {
                                     transaction.add(R.id.main_container, saleCar).show(saleCar)
-                                } else { transaction.show(saleCar) }
+                                } else {
+                                    transaction.show(saleCar) }
                             }
                             3 -> {
-                                hideAllFragments(transaction)
-                                if (!fragmentsList[position].isAdded) {
+                                if (!user.isAdded) {
                                     transaction.add(R.id.main_container, user).show(user)
-                                } else { transaction.show(user) }
+                                } else {
+                                    transaction.show(user) }
                             }
                         }
                         transaction.commit()
@@ -100,12 +100,9 @@ class MainActivity : AppCompatActivity() {
             transaction.commit()
         }
     }
-
     fun hideAllFragments(transaction: FragmentTransaction) {
         for (i in fragmentsList.indices) {
             transaction.hide(fragmentsList[i])
         }
     }
-
-
 }

@@ -14,6 +14,8 @@ import android.widget.TextView
 import cn.bmob.v3.BmobQuery
 import cn.bmob.v3.exception.BmobException
 import cn.bmob.v3.listener.FindListener
+import com.ashokvarma.bottomnavigation.BottomNavigationBar
+import com.ashokvarma.bottomnavigation.BottomNavigationItem
 import com.zaaach.citypicker.CityPickerActivity
 import me.odinaris.searchcar.R
 import kotlinx.android.synthetic.main.frag_homepage.*
@@ -69,24 +71,21 @@ class HomepageFragment : Fragment() {
         })
     }
     private fun initClickListener() {
-//        bbl_car_buy.setOnClickListener({
-//            fragmentManager!!.beginTransaction()
-//                    .addToBackStack(null)
-//                    .replace(R.id.main_container, BuyCarFragment())
-//                    .commit()
-//        })
-//        bbl_car_rent.setOnClickListener({
-//            fragmentManager!!.beginTransaction()
-//                    .addToBackStack(null)
-//                    .replace(R.id.main_container, RentCarFragment())
-//                    .commit()
-//        })
-//        bbl_car_sale.setOnClickListener({
-//            fragmentManager!!.beginTransaction()
-//                    .addToBackStack(null)
-//                    .replace(R.id.main_container, SaleCarFragment())
-//                    .commit()
-//        })
+        val bnb = activity.findViewById(R.id.main_navigator) as BottomNavigationBar
+        bbl_car_buy.setOnClickListener({
+            bnb.selectTab(1)
+            val transaction = fragmentManager!!.beginTransaction()!!
+            transaction.show(BuyCarFragment())
+            transaction.hide(this)
+            transaction.commit()
+        })
+        bbl_car_sale.setOnClickListener({
+            val transaction = fragmentManager!!.beginTransaction()!!
+            bnb.selectTab(2)
+            transaction.show(SaleCarFragment())
+            transaction.hide(this)
+            transaction.commit()
+        })
 
         ll_location.setOnClickListener({
 
@@ -94,8 +93,8 @@ class HomepageFragment : Fragment() {
         })
     }
     //重写onActivityResult方法
-    override fun onActivityResult(requestCode : Int, resultCode : Int, data : Intent) {
-        if (requestCode == REQUEST_CODE_PICK_CITY && resultCode == RESULT_OK){
+    override fun onActivityResult(requestCode : Int, resultCode : Int, data : Intent?) {
+        if (requestCode == REQUEST_CODE_PICK_CITY && resultCode == RESULT_OK && data!=null){
             val city = data.getStringExtra(CityPickerActivity.KEY_PICKED_CITY)
             tv_location.text = city
             //将用户当前选择城市存储在SharePreference中用于其他模块查询

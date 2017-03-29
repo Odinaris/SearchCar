@@ -57,6 +57,8 @@ class BuyCarFragment : Fragment() {
                     }.forEach { carList!!.add(it) }
                     rv_carList.layoutManager = LinearLayoutManager(context)
                     rv_carList.adapter = CarAdapter(carList!!,context)
+                    ll_loading.visibility = View.GONE
+                    rv_carList.visibility = View.VISIBLE
                 }else{
                     val dialog = AlertDialog.Builder(context)
                     dialog.setMessage("数据请求出错！"+e.errorCode+e.message).show()
@@ -65,14 +67,17 @@ class BuyCarFragment : Fragment() {
         })
     }
     //重写onActivityResult方法
-    override fun onActivityResult(requestCode : Int, resultCode : Int, data : Intent) {
-        if (requestCode == REQUEST_CODE_FILTER && resultCode == RESULT_OK){
+    override fun onActivityResult(requestCode : Int, resultCode : Int, data : Intent?) {
+        if (requestCode == REQUEST_CODE_FILTER && resultCode == RESULT_OK && data!=null){
             val bundle = data.extras
-            val selectedSort = bundle.getString("selectedSort")
-            val selectedPrice = if(bundle.getString("selectedPrice")==("不限")) "" else ",价格"+bundle.getString("selectedPrice")
-            val selectedMileAge = if(bundle.getString("selectedMileAge")==("不限")) "" else ",里程"+bundle.getString("selectedMileAge")
-            val selectedEmission = if(bundle.getString("selectedEmission")==("不限")) "" else ",排放标准"+bundle.getString("selectedEmission")
-            tv_filterResult.text = "$selectedSort$selectedPrice$selectedMileAge$selectedEmission"
+            if(bundle.getString("selectedSort")!=""){
+                val selectedSort = bundle.getString("selectedSort")
+                val selectedPrice = if(bundle.getString("selectedPrice")==("不限")) "" else ",价格"+bundle.getString("selectedPrice")
+                val selectedMileAge = if(bundle.getString("selectedMileAge")==("不限")) "" else ",里程"+bundle.getString("selectedMileAge")
+                val selectedEmission = if(bundle.getString("selectedEmission")==("不限")) "" else ",排放标准"+bundle.getString("selectedEmission")
+                tv_filterResult.text = "$selectedSort$selectedPrice$selectedMileAge$selectedEmission"
+            }
+
         }
     }
 }

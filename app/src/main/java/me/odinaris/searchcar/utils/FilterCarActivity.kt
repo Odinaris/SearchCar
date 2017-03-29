@@ -3,6 +3,7 @@ package me.odinaris.searchcar.utils
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.Window
 import com.jaredrummler.materialspinner.MaterialSpinner
 
@@ -10,6 +11,9 @@ import me.odinaris.searchcar.R
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlinx.android.synthetic.main.activity_filter_car.*
+import android.content.DialogInterface
+
+
 
 class FilterCarActivity : AppCompatActivity() {
     private val sortList: List<String> = ArrayList(
@@ -33,23 +37,16 @@ class FilterCarActivity : AppCompatActivity() {
         init()
         initListener()
     }
-
     private fun initListener(){
         ms_sort.setOnItemSelectedListener(
-                MaterialSpinner.OnItemSelectedListener<String>
-                { view, position, id, item -> selectedSort = item })
+                MaterialSpinner.OnItemSelectedListener<String>({ view, position, id, item -> selectedSort = item }))
         ms_price.setOnItemSelectedListener(
-                MaterialSpinner.OnItemSelectedListener<String>
-                { view, position, id, item -> selectedPrice = item })
+                MaterialSpinner.OnItemSelectedListener<String>({ view, position, id, item -> selectedPrice = item }))
         ms_mileAge.setOnItemSelectedListener(
-                MaterialSpinner.OnItemSelectedListener<String>
-                { view, position, id, item -> selectedMileAge = item })
+                MaterialSpinner.OnItemSelectedListener<String>({ view, position, id, item -> selectedMileAge = item }))
         ms_emission.setOnItemSelectedListener(
-                MaterialSpinner.OnItemSelectedListener<String>
-                { view, position, id, item -> selectedEmission = item })
-        iv_back.setOnClickListener({
-            this.setResult(RESULT_OK)
-            this.finish() })
+                MaterialSpinner.OnItemSelectedListener<String>({ view, position, id, item -> selectedEmission = item }))
+        iv_back.setOnClickListener({ this.finish() })
         btn_filter.setOnClickListener({
             val data = Intent()
             val bundle = Bundle()
@@ -62,13 +59,10 @@ class FilterCarActivity : AppCompatActivity() {
             this.finish()
         })
     }
-
     private fun init() {
         ms_sort.setItems(sortList)
         ms_price.setItems(priceList)
         ms_mileAge.setItems(mileAgeList)
         ms_emission.setItems(emissionList)
     }
-
-
 }
