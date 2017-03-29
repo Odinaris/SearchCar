@@ -23,7 +23,7 @@ class ShelfCar : BmobObject() {
     var vendor: String = ""             //厂商
     var weight: String = ""             //整备重量
     var transmission: String = ""       //变速器
-    var applyPhone: String = ""         //预约电话
+    var cylinder: String = ""           //气缸
     var link_detail:String = ""         //详情页链接
     var level:String = ""               //级别
     var introduction:String = ""        //卖家介绍

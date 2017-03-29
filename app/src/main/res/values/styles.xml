@@ -31,4 +31,9 @@
         <item name="android:background">@color/black_overlay</item>
     </style>
 
+    <style name="MyProgressBar" parent="Base.Widget.AppCompat.ProgressBar">
+        <item name="android:indeterminateTint">#fff</item>
+        <item name="android:indeterminateTintMode">src_atop</item>
+    </style>
+
 </resources>

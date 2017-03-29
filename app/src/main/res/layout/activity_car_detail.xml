@@ -19,6 +19,26 @@
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            <LinearLayout
+                android:id="@+id/ll_loadingView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center">
+                <ProgressBar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    style="@style/MyProgressBar"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:layout_margin="8sp"
+                    android:text="加载中..."
+                    android:textColor="#fff"
+                    android:gravity="center"/>
+            </LinearLayout>
             <ImageView
                 android:id="@+id/iv_cover"
                 android:layout_width="match_parent"
@@ -26,7 +46,8 @@
                 android:scaleType="centerCrop"
                 app:layout_collapseMode="parallax"
                 app:layout_collapseParallaxMultiplier="0.7"
-                android:fitsSystemWindows="true"/>
+                android:fitsSystemWindows="true"
+                android:visibility="gone"/>
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar_carDetail"
                 android:layout_width="match_parent"
@@ -51,28 +72,44 @@
         android:id="@+id/nsv_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16sp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:visibility="visible"
+        android:background="#efefef"
+        android:layout_marginBottom="80sp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/tv_name"
+            android:orientation="vertical"
+            android:gravity="center_vertical">
+            <!--名称-->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="left|center_vertical"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="#000"
-                android:text="test"
-                android:maxLines="2"
-                android:layout_marginBottom="8sp"/>
+                android:orientation="vertical"
+                android:background="#fff">
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:text="test"
+                    android:maxLines="2"
+                    android:layout_margin="8sp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="10sp"
+                android:background="#efefef"
+                android:padding="8sp"/>
             <!--价格信息-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="8sp"
+                android:background="#fff">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -93,63 +130,450 @@
                     android:layout_height="wrap_content"
                     android:text="新车含税5.5万"
                     android:textSize="12sp"/>
-
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="10sp"
+                android:background="#efefef"
+                android:padding="8sp"/>
             <!--参数信息-->
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16sp"
-                android:text="参数信息"
-                android:textColor="#000000"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:gravity="left|center_vertical"/>
+                android:orientation="vertical"
+                android:background="#fff"
+                android:padding="8sp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16sp">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/tv_mileAge"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="2.8万公里"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="#000"
+                            android:layout_marginBottom="4sp"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="里程"
+                            android:textSize="14sp"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/tv_registerTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="2015-12"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="#000"
+                            android:layout_marginBottom="4sp"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="上牌日期"
+                            android:textSize="14sp"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/tv_city"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="合肥"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="#000"
+                            android:layout_marginBottom="4sp"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="车牌所在地"
+                            android:textSize="14sp"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16sp">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/tv_emission"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="国五"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="#000"
+                            android:layout_marginBottom="4sp"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="排放标准"
+                            android:textSize="14sp"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/tv_transmission"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="自动"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="#000"
+                            android:layout_marginBottom="4sp"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="变速箱"
+                            android:textSize="14sp"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/tv_displacement"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="1.6L"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="#000"
+                            android:layout_marginBottom="4sp"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="排放量"
+                            android:textSize="14sp"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16sp">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/tv_vendor"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="一汽大众"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="#000"
+                            android:layout_marginBottom="4sp"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="厂商"
+                            android:textSize="14sp"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/tv_level"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="--"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="#000"
+                            android:layout_marginBottom="4sp"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="级别"
+                            android:textSize="14sp"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/tv_structure"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Iro"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="#000"
+                            android:layout_marginBottom="4sp"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="车身结构"
+                            android:textSize="14sp"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16sp">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/tv_wheelbase"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="2648mm"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="#000"
+                            android:layout_marginBottom="4sp"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="轴距"
+                            android:textSize="14sp"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/tv_size"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="4583/1823/1483"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:textColor="#000"
+                            android:layout_marginBottom="4sp"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="长宽高"
+                            android:textSize="14sp"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/tv_weight"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="1336kg"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="#000"
+                            android:layout_marginBottom="4sp"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="整备质量"
+                            android:textSize="14sp"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16sp">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/tv_cylinder"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="L4"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="#000"
+                            android:layout_marginBottom="4sp"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="气缸"
+                            android:textSize="14sp"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/tv_fuelType"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="汽油"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:textColor="#000"
+                            android:layout_marginBottom="4sp"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="燃料类型"
+                            android:textSize="14sp"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/tv_maxSpeed"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="125"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="#000"
+                            android:layout_marginBottom="4sp"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="最大马力"
+                            android:textSize="14sp"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="10sp"
+                android:background="#efefef"
+                android:padding="8sp"/>
             <!--卖家介绍-->
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16sp"
-                android:text="卖家介绍"
-                android:textColor="#000000"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:gravity="center"/>
-            <TextView
-                android:id="@+id/tv_intro"
+                android:orientation="vertical"
+                android:background="#fff">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16sp"
+                    android:text="卖家介绍"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:layout_margin="8sp"/>
+                <TextView
+                    android:id="@+id/tv_intro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="卖家介绍"
+                    android:textStyle="normal"
+                    android:textSize="14sp"
+                    android:layout_margin="8sp"/>
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="卖家介绍"
-                android:textColor="#000000"
-                android:textStyle="normal"
-                android:textSize="16sp"
-                android:gravity="center"/>
+                android:layout_height="10sp"
+                android:background="#efefef"
+                android:padding="8sp"/>
             <!--测试报告-->
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16sp"
-                android:text="测试报告"
-                android:textColor="#000000"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:gravity="center"/>
-            <TextView
-                android:id="@+id/tv_testResult"
+                android:orientation="vertical"
+                android:background="#fff">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16sp"
+                    android:text="测试报告"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:layout_margin="8sp"/>
+                <TextView
+                    android:id="@+id/tv_testResult"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="测试结果"
+                    android:textStyle="normal"
+                    android:textSize="14sp"
+                    android:layout_margin="8sp"/>
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="测试结果"
-                android:textColor="#000000"
-                android:textStyle="normal"
-                android:textSize="16sp"
-                android:gravity="center"/>
+                android:layout_height="10sp"
+                android:background="#efefef"
+                android:padding="8sp"/>
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
     <LinearLayout
         android:id="@+id/ll_apply"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="64dp"
         android:layout_gravity="bottom"
         android:background="@color/colorPrimary"
         android:orientation="horizontal"
@@ -163,23 +587,6 @@
             android:textColor="#fff"
             android:textStyle="normal"/>
     </LinearLayout>
-    <LinearLayout
-        android:id="@+id/ll_loadingView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
-        <ProgressBar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:layout_margin="8sp"
-            android:text="加载中..."
-            android:gravity="center"/>
-    </LinearLayout>
+
 
 </android.support.design.widget.CoordinatorLayout>

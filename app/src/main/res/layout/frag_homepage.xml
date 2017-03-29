@@ -373,16 +373,6 @@
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
             </LinearLayout>
-
-            <Button
-                android:id="@+id/btn_moreCar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="查看全部车源"
-                android:textSize="16sp"
-                android:textColor="@color/colorPrimaryDark"
-                android:layout_marginTop="16dp"
-                android:backgroundTint="#fff"/>
         </LinearLayout>
     </ScrollView>
 

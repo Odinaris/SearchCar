@@ -79,6 +79,13 @@ class HomepageFragment : Fragment() {
             transaction.hide(this)
             transaction.commit()
         })
+        btn_allCar.setOnClickListener({
+            bnb.selectTab(1)
+            val transaction = fragmentManager!!.beginTransaction()!!
+            transaction.show(BuyCarFragment())
+            transaction.hide(this)
+            transaction.commit()
+        })
         bbl_car_sale.setOnClickListener({
             val transaction = fragmentManager!!.beginTransaction()!!
             bnb.selectTab(2)
