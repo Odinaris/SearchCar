@@ -568,7 +568,6 @@
                 android:background="#efefef"
                 android:padding="8sp"/>
         </LinearLayout>
-
     </android.support.v4.widget.NestedScrollView>
     <LinearLayout
         android:id="@+id/ll_apply"
@@ -587,6 +586,4 @@
             android:textColor="#fff"
             android:textStyle="normal"/>
     </LinearLayout>
-
-
 </android.support.design.widget.CoordinatorLayout>
