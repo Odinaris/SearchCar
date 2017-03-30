@@ -15,7 +15,7 @@ import cn.bmob.v3.BmobQuery
 import cn.bmob.v3.BmobUser
 import cn.bmob.v3.exception.BmobException
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.activity_car_detail.*
+import kotlinx.android.synthetic.main.act_car_detail.*
 import me.odinaris.searchcar.bean.ShelfCar
 
 class CarDetailActivity : AppCompatActivity() {
@@ -25,7 +25,7 @@ class CarDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //隐藏标题栏
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
-        setContentView(R.layout.activity_car_detail)
+        setContentView(R.layout.act_car_detail)
         initData()
         initView()
         initListener()
@@ -79,7 +79,8 @@ class CarDetailActivity : AppCompatActivity() {
                         iv_cover.visibility = VISIBLE
                     } else {
                         val dialog = AlertDialog.Builder(applicationContext)
-                        dialog.setMessage("数据请求出错！"+e.errorCode+e.message).show()
+                        dialog.setMessage("数据请求出错！" + e.errorCode + e.message)
+                                .setPositiveButton("知道了",null).show()
                     }
                 }
             })

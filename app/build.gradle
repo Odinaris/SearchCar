@@ -67,6 +67,7 @@ dependencies {
     compile 'com.jaredrummler:material-spinner:1.1.0'
     compile 'com.android.support:design:25.3.0'
     compile 'com.android.support:support-v4:25.3.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta1'
     testCompile 'junit:junit:4.12'
 }
 repositories {

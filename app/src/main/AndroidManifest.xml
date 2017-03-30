@@ -22,13 +22,16 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
     <uses-permission android:name="android.permission.READ_PROFILE"/>
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/logo_sj"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".main.MainActivity" android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity
+            android:name=".main.MainActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
         <activity android:name=".login.LoginActivity"/>
         <activity android:name=".login.RegisterActivity"/>
         <activity android:name=".main.SplashActivity"
@@ -43,7 +46,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/CityPicker.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustPan"/>
-        <activity android:name=".utils.CarDetailActivity" android:label="@string/title_activity_car_detail"/>
+        <activity android:name=".utils.CarDetailActivity"
+            android:label="@string/title_activity_car_detail"/>
         <activity android:name=".utils.FilterCarActivity"/>
+        <activity android:name=".sale_car.SaleInfoActivity">
+        </activity>
     </application>
+
 </manifest>

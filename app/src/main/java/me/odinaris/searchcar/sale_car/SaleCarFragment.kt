@@ -1,10 +1,12 @@
 package me.odinaris.searchcar.sale_car
 
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,8 +26,17 @@ class SaleCarFragment : Fragment() {
     }
 
     private fun initClickListener() {
-        btn_apply.setOnClickListener{ }
-        et_phone.setOnClickListener{ }
+        btn_apply.setOnClickListener{
+            val phone = et_phone.text.toString()
+            if(isPhone(phone)){
+                val intent = Intent(context,SaleInfoActivity::class.java)
+                intent.putExtra("phone",phone)
+                startActivity(intent)
+            }else{
+                val builder = AlertDialog.Builder(context)
+                builder.setMessage("手机号码填写不正确!").setPositiveButton("知道了", null).show()
+            }
+        }
     }
 
     private fun initView() {
@@ -37,5 +48,11 @@ class SaleCarFragment : Fragment() {
         opt.inPreferredConfig = Bitmap.Config.RGB_565
         val `is` = resources.openRawResource(resId)
         return BitmapFactory.decodeStream(`is`, null, opt)
+    }
+    //检测手机号码是否符合规范
+    private fun isPhone(mobiles: String): Boolean {
+        val telRegex = "[1][34578]\\d{9}"
+        if (mobiles.isEmpty()) return false
+        else return mobiles.matches(telRegex.toRegex())
     }
 }

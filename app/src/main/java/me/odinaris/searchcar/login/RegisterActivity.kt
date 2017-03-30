@@ -16,6 +16,9 @@ import me.odinaris.searchcar.bean.userInfo
 import kotlinx.android.synthetic.main.act_register.*
 import me.odinaris.searchcar.main.MainActivity
 import android.content.Intent
+import android.os.Build
+import android.view.Window
+import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import cn.bmob.v3.exception.BmobException
 import me.odinaris.searchcar.utils.Input
@@ -24,6 +27,11 @@ import me.odinaris.searchcar.utils.Input
 class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)//状态栏透明
+//            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)//可不加
+//        }
         setContentView(R.layout.act_register)
         initView()
         initListener()

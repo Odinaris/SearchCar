@@ -19,7 +19,8 @@
             android:layout_width="?attr/actionBarSize"
             android:layout_height="?attr/actionBarSize"
             android:src="@drawable/ic_back"
-            android:padding="16dp"
+            android:padding="16sp"
+            android:paddingBottom="16sp"
             android:tint="#fff"/>
         <TextView
             android:layout_width="wrap_content"

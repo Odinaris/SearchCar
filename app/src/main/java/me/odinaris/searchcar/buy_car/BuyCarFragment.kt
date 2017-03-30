@@ -1,5 +1,6 @@
 package me.odinaris.searchcar.buy_car
 
+import android.app.Activity
 import android.app.Activity.RESULT_OK
 import android.app.AlertDialog
 import android.content.Intent
@@ -15,6 +16,7 @@ import kotlinx.android.synthetic.main.frag_car_buy.*
 import cn.bmob.v3.BmobQuery
 import cn.bmob.v3.exception.BmobException
 import cn.bmob.v3.listener.FindListener
+import com.zaaach.citypicker.CityPickerActivity
 import me.odinaris.searchcar.adapter.CarAdapter
 import me.odinaris.searchcar.bean.CarIntro
 import me.odinaris.searchcar.bean.ShelfCar
@@ -22,7 +24,8 @@ import me.odinaris.searchcar.utils.FilterCarActivity
 import java.util.*
 
 class BuyCarFragment : Fragment() {
-    private val REQUEST_CODE_FILTER = 0
+    private val REQUEST_CODE_FILTER = 1
+    private val REQUEST_CODE_PICK_CITY = 0
     private var carList: ArrayList<CarIntro>? = ArrayList()
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -37,6 +40,8 @@ class BuyCarFragment : Fragment() {
     }
     private fun initClickListener() {
         ll_filterBox.setOnClickListener({ startActivityForResult(Intent(context,FilterCarActivity::class.java),REQUEST_CODE_FILTER) })
+        tv_location.setOnClickListener{
+            startActivityForResult(Intent(context, CityPickerActivity::class.java),REQUEST_CODE_PICK_CITY) }
     }
     private fun initView() {
         et_search.clearFocus()
@@ -78,6 +83,11 @@ class BuyCarFragment : Fragment() {
                 tv_filterResult.text = "$selectedSort$selectedPrice$selectedMileAge$selectedEmission"
             }
 
+        }else if (requestCode == REQUEST_CODE_PICK_CITY && resultCode == Activity.RESULT_OK && data!=null){
+            val city = data.getStringExtra(CityPickerActivity.KEY_PICKED_CITY)
+            tv_location.text = city
         }
+
     }
+
 }

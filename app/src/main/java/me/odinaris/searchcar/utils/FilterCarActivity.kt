@@ -10,7 +10,7 @@ import com.jaredrummler.materialspinner.MaterialSpinner
 import me.odinaris.searchcar.R
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlinx.android.synthetic.main.activity_filter_car.*
+import kotlinx.android.synthetic.main.act_filter_car.*
 import android.content.DialogInterface
 
 
@@ -33,7 +33,7 @@ class FilterCarActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //隐藏标题栏
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
-        setContentView(R.layout.activity_filter_car)
+        setContentView(R.layout.act_filter_car)
         init()
         initListener()
     }
@@ -57,6 +57,12 @@ class FilterCarActivity : AppCompatActivity() {
             data.putExtras(bundle)
             this.setResult(RESULT_OK, data)
             this.finish()
+        })
+        tv_clearAllFilter.setOnClickListener({
+            ms_sort.selectedIndex = 0
+            ms_price.selectedIndex = 0
+            ms_mileAge.selectedIndex = 0
+            ms_emission.selectedIndex = 0
         })
     }
     private fun init() {
