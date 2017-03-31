@@ -15,7 +15,6 @@ import cn.bmob.v3.BmobQuery
 import cn.bmob.v3.exception.BmobException
 import cn.bmob.v3.listener.FindListener
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
-import com.ashokvarma.bottomnavigation.BottomNavigationItem
 import com.zaaach.citypicker.CityPickerActivity
 import me.odinaris.searchcar.R
 import kotlinx.android.synthetic.main.frag_homepage.*
@@ -27,6 +26,8 @@ import me.odinaris.searchcar.sale_car.SaleCarFragment
 import me.odinaris.searchcar.utils.DisScrollLinearLayoutManager
 import me.odinaris.searchcar.utils.Input
 import java.util.*
+import android.content.Context
+import me.odinaris.searchcar.utils.BmobUtils
 
 
 class HomepageFragment : Fragment() {
@@ -46,29 +47,16 @@ class HomepageFragment : Fragment() {
         initClickListener()//监听器绑定操作
     }
     fun initData(){
-        val carIntroQuery = BmobQuery<ShelfCar>()
-        carIntroQuery.addWhereNotEqualTo("name","")
-        carIntroQuery.setLimit(10)
-        carIntroQuery.order("-objectId")
-        carIntroQuery.findObjects(object : FindListener<ShelfCar>(){
-            override fun done(p0: MutableList<ShelfCar>?, e: BmobException?) {
-                if(e==null){
-                    p0!!.map {
-                        CarIntro(it.name, it.cover, it.registerTime,
-                                it.mileAge, it.price, it.newPrice,it.objectId)
-                    }.forEach { carList!!.add(it) }
-                    val layoutManager = DisScrollLinearLayoutManager(context)
-                    layoutManager.setScrollEnabled(false)
-                    rv_hotCar.layoutManager = layoutManager
-                    rv_hotCar.adapter = CarAdapter(carList!!,context)
-                    pb_loadingCar.visibility = View.GONE
-                    rv_hotCar.visibility = View.VISIBLE
-                }else{
-                    val dialog = AlertDialog.Builder(context)
-                    dialog.setMessage("数据请求出错！"+e.errorCode+e.message).show()
-                }
-            }
-        })
+        val city = tv_location.text.toString()
+        val priceLow = 0
+        val priceUp = 999
+        val vendor = ""
+        val loadingNum = 10
+        val skipNum = 0
+        val sortRule = ""
+        val mileAge = 0
+        //BmobUtils.searchCar(
+               // city,priceLow,priceUp,vendor,loadingNum,skipNum,sortRule,mileAge,"",rv_hotCar,context,pb_loadingCar)
     }
     private fun initClickListener() {
         val bnb = activity.findViewById(R.id.main_navigator) as BottomNavigationBar
@@ -93,19 +81,16 @@ class HomepageFragment : Fragment() {
             transaction.hide(this)
             transaction.commit()
         })
-
-        ll_location.setOnClickListener({
-
-            startActivityForResult(Intent(context,CityPickerActivity::class.java),REQUEST_CODE_PICK_CITY)
-        })
+        ll_location.setOnClickListener({ startActivityForResult(Intent(context,CityPickerActivity::class.java),REQUEST_CODE_PICK_CITY) })
     }
     //重写onActivityResult方法
     override fun onActivityResult(requestCode : Int, resultCode : Int, data : Intent?) {
         if (requestCode == REQUEST_CODE_PICK_CITY && resultCode == RESULT_OK && data!=null){
             val city = data.getStringExtra(CityPickerActivity.KEY_PICKED_CITY)
             tv_location.text = city
-            //将用户当前选择城市存储在SharePreference中用于其他模块查询
-            //当选择城市之后更新当前车源列表
+            val cityInfo = activity.getSharedPreferences("cityInfo",Context.MODE_PRIVATE)
+            cityInfo.edit().putString("city", city).apply()//将用户当前选择城市存储在SharePreference中用于其他模块查询
+
         }
     }
     fun initView(){
@@ -121,4 +106,5 @@ class HomepageFragment : Fragment() {
         viewList.add(tv_searchCar)
         Input.hideSoftInput(context,viewList)
     }
+
 }
