@@ -34,6 +34,12 @@ class HomepageFragment : Fragment() {
     private val REQUEST_CODE_PICK_CITY = 0
     private var carList: ArrayList<CarIntro>? = ArrayList()
     private var viewList: ArrayList<View> = ArrayList()
+    private val city = tv_location.text.toString()
+    private val vendor = ""
+    private val loadingNum = 10
+    private val skipNum = 0
+    private val sortRule = ""
+    private val emission = "不限"
 
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -47,16 +53,8 @@ class HomepageFragment : Fragment() {
         initClickListener()//监听器绑定操作
     }
     fun initData(){
-        val city = tv_location.text.toString()
-        val priceLow = 0
-        val priceUp = 999
-        val vendor = ""
-        val loadingNum = 10
-        val skipNum = 0
-        val sortRule = ""
-        val mileAge = 0
-        //BmobUtils.searchCar(
-               // city,priceLow,priceUp,vendor,loadingNum,skipNum,sortRule,mileAge,"",rv_hotCar,context,pb_loadingCar)
+
+        BmobUtils.searchCar(loadingNum,skipNum,city,vendor,sortRule,emission,rv_hotCar,pb_loadingCar,context,false)
     }
     private fun initClickListener() {
         val bnb = activity.findViewById(R.id.main_navigator) as BottomNavigationBar

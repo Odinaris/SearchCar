@@ -2,9 +2,6 @@ package me.odinaris.searchcar.bean
 
 import cn.bmob.v3.BmobObject
 
-/**
- * Created by Odinaris on 2017/3/24.
- */
 class ShelfCar : BmobObject() {
     var name: String = ""               //名称
     var wheelbase: String = ""          //扭矩
