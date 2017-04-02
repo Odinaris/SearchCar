@@ -13,7 +13,12 @@ import me.odinaris.searchcar.R
 import java.util.*
 import android.widget.DatePicker
 import android.app.DatePickerDialog
-
+import android.content.DialogInterface
+import cn.bmob.v3.BmobUser
+import cn.bmob.v3.exception.BmobException
+import cn.bmob.v3.listener.SaveListener
+import me.odinaris.searchcar.bean.SaleInfo
+import me.odinaris.searchcar.main.MainActivity
 
 
 class SaleInfoActivity : AppCompatActivity() {
@@ -34,13 +39,31 @@ class SaleInfoActivity : AppCompatActivity() {
             val registerTime = tv_registerTime.text.toString()
             val price = et_price.text.toString()
             if(allInfoFilled(vendor,mileAge,registerTime,price)){
+                val saleInfo = SaleInfo()
+                saleInfo.phone = phone
+                saleInfo.vendor = vendor
+                saleInfo.mileAge = mileAge.toFloat()
+                saleInfo.city = city
+                saleInfo.registerTime = registerTime
+                saleInfo.price = price.toFloat()
+                saleInfo.username = BmobUser.getCurrentUser().username
                 val dialog = AlertDialog.Builder(this)
-                dialog.setMessage("信息提交成功,请等待工作人员与您联系!")
-                        .setPositiveButton("知道了",null).show()
+                saleInfo.save(object:SaveListener<String>(){
+                    override fun done(p0: String?, e: BmobException?) {
+                        if(e == null) {
+                            dialog.setMessage("信息提交成功,请等待工作人员与您联系!")
+                                    .setPositiveButton("知道了", DialogInterface.OnClickListener { dialog, which ->
+                                        startActivity(Intent(this@SaleInfoActivity,MainActivity::class.java))
+                                    }).show()
+                        }else{
+                            dialog.setMessage("提交数据失败！"+e.message+e.errorCode)
+                                    .setPositiveButton("知道了",null).show()
+                        }
+                    }
+                })
             }else{
                 val dialog = AlertDialog.Builder(this)
-                dialog.setMessage("请检查信息是否填写完整!")
-                        .setPositiveButton("知道了",null).show()
+                dialog.setMessage("请检查信息是否填写完整!").setPositiveButton("知道了",null).show()
             }
         }
         ll_city.setOnClickListener{

@@ -54,10 +54,7 @@
             <!--必须加入requestFocus才可使焦点不被EditText自动获取-->
             <requestFocus/>
         </LinearLayout>
-
     </android.support.v7.widget.CardView>
-
-
 
     <ScrollView
         android:layout_width="match_parent"
@@ -133,196 +130,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="0dp"
                 android:padding="8dp"
                 android:background="#ffffff">
-                <!--标题-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/quickSearch"
-                        android:textSize="16sp"
-                        android:textColor="@color/colorPrimary"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"/>
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-                    </LinearLayout>
-                    <LinearLayout
-                        android:id="@+id/tv_more"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/moreSelect"
-                            android:textSize="16sp"
-                            android:textColor="#002aff"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginBottom="8dp"/>
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_gravity="center"
-                            android:tint="#002aff"
-                            android:src="@drawable/ic_right"/>
-                    </LinearLayout>
-                </LinearLayout>
                 <!--筛选选项-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:id="@+id/tv_below5"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="5万以下"
-                        android:textSize="16sp"
-                        android:textColor="@color/colorPrimary"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:gravity="center"/>
-                    <TextView
-                        android:id="@+id/tv_between5_10"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="5-10万"
-                        android:textSize="16sp"
-                        android:textColor="@color/colorPrimary"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:gravity="center"/>
-                    <TextView
-                        android:id="@+id/tv_between10_15"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="10-15万"
-                        android:textSize="16sp"
-                        android:textColor="@color/colorPrimary"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:gravity="center"/>
-                    <TextView
-                        android:id="@+id/tv_above15"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="15万以上"
-                        android:textSize="16sp"
-                        android:textColor="@color/colorPrimary"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:gravity="center"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:id="@+id/tv_Volkswagen"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="大众"
-                        android:textSize="16sp"
-                        android:textColor="@color/colorPrimary"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:gravity="center"/>
-                    <TextView
-                        android:id="@+id/tv_Chevrolet"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="雪佛兰"
-                        android:textSize="16sp"
-                        android:textColor="@color/colorPrimary"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:gravity="center"/>
-                    <TextView
-                        android:id="@+id/tv_JAC"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="江淮"
-                        android:textSize="16sp"
-                        android:textColor="@color/colorPrimary"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:gravity="center"/>
-                    <TextView
-                        android:id="@+id/tv_Ford"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="福特"
-                        android:textSize="16sp"
-                        android:textColor="@color/colorPrimary"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:gravity="center"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:id="@+id/tv_Chery"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="奇瑞"
-                        android:textSize="16sp"
-                        android:textColor="@color/colorPrimary"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:gravity="center"/>
-                    <TextView
-                        android:id="@+id/tv_Buick"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="别克"
-                        android:textSize="16sp"
-                        android:textColor="@color/colorPrimary"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:gravity="center"/>
-                    <TextView
-                        android:id="@+id/tv_Kia"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="起亚"
-                        android:textSize="16sp"
-                        android:textColor="@color/colorPrimary"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:gravity="center"/>
-                    <TextView
-                        android:id="@+id/tv_BYD"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="比亚迪"
-                        android:textSize="16sp"
-                        android:textColor="@color/colorPrimary"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:gravity="center"/>
-                </LinearLayout>
                 <Button
                     android:id="@+id/btn_allCar"
                     android:layout_width="match_parent"
@@ -367,10 +178,23 @@
                         android:layout_height="wrap_content"
                         android:visibility="gone">
                     </android.support.v7.widget.RecyclerView>
-                    <ProgressBar
-                        android:id="@+id/pb_loadingCar"
+                    <LinearLayout
+                        android:id="@+id/ll_loading"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <ProgressBar
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="加载中..."
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="18sp"/>
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

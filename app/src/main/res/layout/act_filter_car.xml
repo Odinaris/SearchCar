@@ -55,34 +55,34 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:textSize="16sp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="价格"
-        android:textColor="@color/colorPrimary"
-        android:textSize="18sp"
-        android:layout_marginTop="0sp"
-        android:layout_marginLeft="8sp"/>
-    <com.jaredrummler.materialspinner.MaterialSpinner
-        android:id="@+id/ms_price"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:textSize="16sp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="里程"
-        android:textColor="@color/colorPrimary"
-        android:textSize="18sp"
-        android:layout_marginTop="0sp"
-        android:layout_marginLeft="8sp"/>
-    <com.jaredrummler.materialspinner.MaterialSpinner
-        android:id="@+id/ms_mileAge"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:textSize="16sp"/>
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="价格"-->
+        <!--android:textColor="@color/colorPrimary"-->
+        <!--android:textSize="18sp"-->
+        <!--android:layout_marginTop="0sp"-->
+        <!--android:layout_marginLeft="8sp"/>-->
+    <!--<com.jaredrummler.materialspinner.MaterialSpinner-->
+        <!--android:id="@+id/ms_price"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_margin="8dp"-->
+        <!--android:textSize="16sp"/>-->
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="里程"-->
+        <!--android:textColor="@color/colorPrimary"-->
+        <!--android:textSize="18sp"-->
+        <!--android:layout_marginTop="0sp"-->
+        <!--android:layout_marginLeft="8sp"/>-->
+    <!--<com.jaredrummler.materialspinner.MaterialSpinner-->
+        <!--android:id="@+id/ms_mileAge"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_margin="8dp"-->
+        <!--android:textSize="16sp"/>-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

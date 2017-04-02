@@ -61,7 +61,7 @@ class RegisterActivity : AppCompatActivity() {
                                         startActivity(Intent(this@RegisterActivity, MainActivity::class.java))
                                     } }).show() }
                             else {
-                                AlertDialog.Builder(this@RegisterActivity).setTitle("登录失败")
+                                AlertDialog.Builder(this@RegisterActivity).setTitle("注册s失败")
                                         .setMessage("错误信息码:" + e.errorCode + "\n" + "错误信息:" + e.message + "\n")
                                         .setPositiveButton("知道了", null)
                                         .show() } } }) }

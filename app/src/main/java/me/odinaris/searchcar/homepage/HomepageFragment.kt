@@ -2,7 +2,6 @@ package me.odinaris.searchcar.homepage
 
 
 import android.app.Activity.RESULT_OK
-import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -11,35 +10,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import cn.bmob.v3.BmobQuery
-import cn.bmob.v3.exception.BmobException
-import cn.bmob.v3.listener.FindListener
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
 import com.zaaach.citypicker.CityPickerActivity
 import me.odinaris.searchcar.R
 import kotlinx.android.synthetic.main.frag_homepage.*
-import me.odinaris.searchcar.adapter.CarAdapter
 import me.odinaris.searchcar.bean.CarIntro
-import me.odinaris.searchcar.bean.ShelfCar
 import me.odinaris.searchcar.buy_car.BuyCarFragment
 import me.odinaris.searchcar.sale_car.SaleCarFragment
-import me.odinaris.searchcar.utils.DisScrollLinearLayoutManager
 import me.odinaris.searchcar.utils.Input
 import java.util.*
 import android.content.Context
 import me.odinaris.searchcar.utils.BmobUtils
 
 
-class HomepageFragment : Fragment() {
+class HomepageFragment : Fragment(),View.OnClickListener{
+
     private val REQUEST_CODE_PICK_CITY = 0
     private var carList: ArrayList<CarIntro>? = ArrayList()
     private var viewList: ArrayList<View> = ArrayList()
-    private val city = tv_location.text.toString()
-    private val vendor = ""
     private val loadingNum = 10
     private val skipNum = 0
-    private val sortRule = ""
-    private val emission = "不限"
+    private var carMap:HashMap<String,String> = HashMap()
+    private var  bnb: BottomNavigationBar? = null
 
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -53,33 +45,41 @@ class HomepageFragment : Fragment() {
         initClickListener()//监听器绑定操作
     }
     fun initData(){
-
-        BmobUtils.searchCar(loadingNum,skipNum,city,vendor,sortRule,emission,rv_hotCar,pb_loadingCar,context,false)
+        carMap["city"] = activity.getSharedPreferences("cityInfo",Context.MODE_PRIVATE).getString("city","合肥")
+        BmobUtils.searchCar(carMap,carList,loadingNum,skipNum,rv_hotCar,ll_loading,context,false)
     }
     private fun initClickListener() {
-        val bnb = activity.findViewById(R.id.main_navigator) as BottomNavigationBar
-        bbl_car_buy.setOnClickListener({
-            bnb.selectTab(1)
-            val transaction = fragmentManager!!.beginTransaction()!!
-            transaction.show(BuyCarFragment())
-            transaction.hide(this)
-            transaction.commit()
-        })
-        btn_allCar.setOnClickListener({
-            bnb.selectTab(1)
-            val transaction = fragmentManager!!.beginTransaction()!!
-            transaction.show(BuyCarFragment())
-            transaction.hide(this)
-            transaction.commit()
-        })
-        bbl_car_sale.setOnClickListener({
-            val transaction = fragmentManager!!.beginTransaction()!!
-            bnb.selectTab(2)
-            transaction.show(SaleCarFragment())
-            transaction.hide(this)
-            transaction.commit()
-        })
-        ll_location.setOnClickListener({ startActivityForResult(Intent(context,CityPickerActivity::class.java),REQUEST_CODE_PICK_CITY) })
+        ll_location.setOnClickListener(this)
+        bbl_car_buy.setOnClickListener(this)
+        btn_allCar.setOnClickListener(this)
+        bbl_car_sale.setOnClickListener(this)
+    }
+    override fun onClick(v: View?) {
+        when(v){
+            ll_location -> {
+                startActivityForResult(Intent(context,CityPickerActivity::class.java),REQUEST_CODE_PICK_CITY) }
+            bbl_car_buy -> {
+                bnb!!.selectTab(1)
+                val transaction = fragmentManager!!.beginTransaction()!!
+                transaction.show(BuyCarFragment())
+                transaction.hide(this)
+                transaction.commit()
+            }
+            btn_allCar -> {
+                bnb!!.selectTab(1)
+                val transaction = fragmentManager!!.beginTransaction()!!
+                transaction.show(BuyCarFragment())
+                transaction.hide(this)
+                transaction.commit()
+            }
+            bbl_car_sale -> {
+                val transaction = fragmentManager!!.beginTransaction()!!
+                bnb!!.selectTab(2)
+                transaction.show(SaleCarFragment())
+                transaction.hide(this)
+                transaction.commit()
+            }
+        }
     }
     //重写onActivityResult方法
     override fun onActivityResult(requestCode : Int, resultCode : Int, data : Intent?) {
@@ -88,10 +88,13 @@ class HomepageFragment : Fragment() {
             tv_location.text = city
             val cityInfo = activity.getSharedPreferences("cityInfo",Context.MODE_PRIVATE)
             cityInfo.edit().putString("city", city).apply()//将用户当前选择城市存储在SharePreference中用于其他模块查询
+            BmobUtils.searchCar(carMap,carList,loadingNum,skipNum,rv_hotCar,ll_loading,context,false)
 
         }
     }
     fun initView(){
+        tv_location.text = activity.getSharedPreferences("cityInfo",Context.MODE_PRIVATE).getString("city","合肥")
+        bnb = activity.findViewById(R.id.main_navigator) as BottomNavigationBar
         et_search.onActionViewExpanded()
         et_search.setIconifiedByDefault(false)
         et_search.isSubmitButtonEnabled = true

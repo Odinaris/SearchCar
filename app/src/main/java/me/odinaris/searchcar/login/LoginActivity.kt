@@ -35,11 +35,6 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)//状态栏透明
-//            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)//可不加
-//        }
         setContentView(R.layout.act_login)
         initView()
         initListener()
@@ -47,80 +42,46 @@ class LoginActivity : AppCompatActivity() {
 
     private fun initListener() {
         btn_submit.setOnClickListener {
-            val phone = et_phone.text.toString()
+            val username = et_username.text.toString()
             val password = et_password.text.toString()
-            val stateCode = checkLogin(phone,password)
             val dialog = AlertDialog.Builder(this)
-            //val progress = ProgressDialog.showDialog(this)//加载动画dialog
-            when(stateCode){
-                "000" -> {
-                    //progress.show()
-                    Input.hideSoftInput(this)//如果符合登陆条件，则隐藏软键盘
-                    val user = userInfo()
-                    user.username = phone
-                    user.setPassword(password)
-                    user.login(object : SaveListener<userInfo>() {
-                        //注意：不能用save方法进行注册
-                        override fun done(s: userInfo?, e: BmobException?) {
-                            if (e == null) {
-                                Snackbar.make(ll_main, "登录成功", Snackbar.LENGTH_LONG).setCallback(object : Snackbar.Callback() {
-                                    override fun onDismissed(sb: Snackbar?, event: Int) {
-                                        super.onDismissed(sb, event)
-                                        val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                                        startActivity(intent)
-                                    }
-                                }).show()
-                            } else {
-                                val builder = AlertDialog.Builder(this@LoginActivity)
-                                builder.setTitle("登录失败")
-                                        .setMessage("错误信息码:" + e.errorCode + "\n" + "错误信息:" + e.message + "\n")
-                                        .setPositiveButton("知道了", null)
-                                        .show()
-                            }
-                        }
-                    })
+            val user = userInfo()
+            user.username = username
+            user.setPassword(password)
+            user.login(object : SaveListener<userInfo>() {
+                override fun done(p0: userInfo?, e: BmobException?) {
+                    if (e == null) {
+                        Snackbar.make(ll_main, "登陆成功", Snackbar.LENGTH_LONG).setCallback(object : Snackbar.Callback() {
+                            override fun onDismissed(sb: Snackbar?, event: Int) {
+                                super.onDismissed(sb, event)
+                                val bundle = Bundle()
+                                bundle.putString("username",username)
+                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                intent.putExtras(bundle)
+                                this@LoginActivity.setResult(RESULT_OK,intent)
+                                this@LoginActivity.finish()
+                            } }).show()
+                    } else {
+                        AlertDialog.Builder(this@LoginActivity).setTitle("登录失败")
+                                .setMessage("错误信息码:" + e.errorCode + "\n" + "错误信息:" + e.message + "\n")
+                                .setPositiveButton("知道了", null)
+                                .show()
+                    }
                 }
-                "001" -> { dialog.setTitle("警告").setMessage("密码长度需要在6-12位之间！").show()}
-                "002" -> { dialog.setTitle("警告").setMessage("手机号码输入不正确！").show()}
+            })
+            tv_register.setOnClickListener {
+                val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
+                startActivity(intent)
             }
         }
         tv_register.setOnClickListener{
-            val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this@LoginActivity,RegisterActivity::class.java))
         }
-        //用于实时监测输入变化反馈信息（较复杂，目前没时间完成）
-//        et_phone.addTextChangedListener(object: TextWatcher{
-//            override fun beforeTextChanged(s: CharSequence, var2: Int, var3: Int, var4: Int) {
-//                chars = s
-//            }
-//            override fun onTextChanged(var1: CharSequence, var2: Int, var3: Int, var4: Int) {}
-//            override fun afterTextChanged(s: Editable) {
-//                start = et_phone.selectionStart
-//                end = et_phone.selectionEnd
-//                if(chars!!.length>11){
-//                    til_phone.isErrorEnabled = true
-//                    til_phone.error = "手机号码必须为11位!"
-//                    s.delete(start-1,end)
-//                    val ad = AlertDialog.Builder(this@LoginActivity)
-//                    ad.setTitle("手机号码必须为11位!").show()
-//                    btn_submit.isClickable = false
-//                    btn_submit.setBackgroundColor(Color.parseColor("#cccccc"))
-//                }else if(chars!!.length<=11){
-//                    til_phone.isErrorEnabled = false
-//                    til_phone.error = ""
-//                    btn_submit.isClickable = true
-//                    btn_submit.setBackgroundColor(R.color.colorPrimary)
-//                }
-//            }
-//        })
     }
-
     private fun initView() {
         //设置标题栏返回键
         setBackButton()
     }
-
-
     //设置标题栏返回键
     private fun setBackButton() {
         val actionBar = supportActionBar
@@ -129,12 +90,12 @@ class LoginActivity : AppCompatActivity() {
             actionBar.setDisplayHomeAsUpEnabled(true)
         }
     }
-
-    private fun checkLogin(phone: String, password: String): String{
-        if(isMobile(phone))
-            if(isPassword(password)) return "000"//手机号码&&密码符合规范
-            else return "001"//密码不符合规范
-        else return "002"//手机号码不符合规范
+    private fun checkLogin(phone: String, password: String): Boolean{
+//        if(isMobile(phone))
+//            if(isPassword(password)) return "000"//手机号码&&密码符合规范
+//            else return "001"//密码不符合规范
+//        else return "002"//手机号码不符合规范
+            return false
 
     }
 
@@ -172,7 +133,6 @@ class LoginActivity : AppCompatActivity() {
         if(password.isEmpty()) return false
         else return password.matches(passwordRegex.toRegex())
     }
-
     override fun onStop() {
         super.onStop()
         finish()

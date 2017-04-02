@@ -10,6 +10,8 @@ import android.support.v7.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import cn.bmob.v3.Bmob
+import cn.bmob.v3.BmobUser
 import me.odinaris.searchcar.R
 import kotlinx.android.synthetic.main.frag_car_sale.*
 
@@ -27,22 +29,26 @@ class SaleCarFragment : Fragment() {
 
     private fun initClickListener() {
         btn_apply.setOnClickListener{
-            val phone = et_phone.text.toString()
+            val phone = et_username.text.toString()
             if(isPhone(phone)){
-                val intent = Intent(context,SaleInfoActivity::class.java)
-                intent.putExtra("phone",phone)
-                startActivity(intent)
+                if(BmobUser.getCurrentUser()!=null){
+                    val intent = Intent(context,SaleInfoActivity::class.java)
+                    intent.putExtra("phone",phone)
+                    startActivity(intent)
+                }else{
+                    val builder = AlertDialog.Builder(context)
+                    builder.setMessage("请登陆帐号!").setPositiveButton("知道了", null).show()
+                }
+
             }else{
                 val builder = AlertDialog.Builder(context)
                 builder.setMessage("手机号码填写不正确!").setPositiveButton("知道了", null).show()
             }
         }
     }
-
     private fun initView() {
         ll_saleBox.setBackgroundResource(R.drawable.wallpaper_sj2)
     }
-
     private fun readBitMap(resId: Int): Bitmap {
         val opt = BitmapFactory.Options()
         opt.inPreferredConfig = Bitmap.Config.RGB_565
